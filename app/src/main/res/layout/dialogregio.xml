@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_gravity="center"
+    android:layout_width="350dp"
+    android:layout_height="wrap_content"
+    android:id="@+id/regio_item"
+    android:gravity="center_horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/MediumAquamarine"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/regio_titel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Regio"
+            android:textColor="@color/text_color"
+            android:textStyle="italic"
+            android:textSize="24sp"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"/>
+
+        <TextView
+            android:id="@+id/regio_naam"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Naam"
+            android:textColor="@color/text_color"
+            android:textSize="18dp"
+            android:layout_marginTop="5dp"
+            android:padding="8dp"
+            android:background="@color/WhiteSmoke" />
+
+
+    </LinearLayout>
+
+</RelativeLayout>

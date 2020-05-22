@@ -24,14 +24,6 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button_filters"
-            android:text="Zoeken"
-            android:background="@color/WhiteSmoke"
-            />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/button_plek"
             android:text="Plek"
             android:background="@color/MintCream"

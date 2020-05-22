@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".zoeken"></activity>
+        <activity android:name=".lijst"
+            android:parentActivityName=".MainActivity"/>
         <activity android:name=".FiltersvoorZoeken" />
         <activity android:name=".regios_gekozenplek" />
         <activity android:name=".informatie_gekozenplek" />

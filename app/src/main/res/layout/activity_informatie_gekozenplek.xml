@@ -25,11 +25,10 @@
 
             <ImageView
                 android:id="@+id/vlag_informatie_gekozenplek"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/spainflag"
-                android:layout_centerHorizontal="true"
-                android:layout_margin="10dp"/>
+                android:layout_gravity="center"
+                android:padding="10dp"/>
 
         </RelativeLayout>
 
@@ -37,7 +36,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="Spanje"
             android:id="@+id/naam_informatie_gekozenplek"
             android:textSize="20dp"
             android:textColor="@color/text_color"

@@ -27,22 +27,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        final Button filerknop= (Button) findViewById(R.id.button_filters);
-        filerknop.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                Intent i = new Intent(v.getContext(), zoeken.class);
-                startActivity(i);
-            }
-        });
-
-
         final Button plekknop= (Button) findViewById(R.id.button_plek);
         plekknop.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                Intent i = new Intent(v.getContext(), Gekozenplek.class);
+                Intent i = new Intent(v.getContext(), lijst.class);
                 startActivity(i);
             }
         });
