@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Reizigers_App</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_gekozenplek">Gekozenplek</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+
+    <string-array name="spanje_items">
+        <item>Madrid</item>
+        <item>Aragon</item>
+        <item>Asturias</item>
+        <item>Cantabria</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

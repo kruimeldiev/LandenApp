@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Informatie_Tab">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:id="@+id/naam_informatie_gekozenplek"
+        android:textSize="20dp"
+        android:textColor="@color/text_color"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Informatie"
+        android:id="@+id/titel_informatie_gekozenplek"
+        android:textSize="20dp"
+        android:textColor="@color/text_color"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Taal: "
+        android:id="@+id/taal_informatie_gekozenplek"
+        android:textSize="20dp"
+        android:textColor="@color/text_color"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Valuta: "
+        android:id="@+id/valuta_informatie_gekozenplek"
+        android:textSize="20dp"
+        android:textColor="@color/text_color"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Hoofdstad: "
+        android:id="@+id/hoofdstad_informatie_gekozenplek"
+        android:textSize="20dp"
+        android:textColor="@color/text_color"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Religie: "
+        android:id="@+id/religie_informatie_gekozenplek"
+        android:textSize="20dp"
+        android:textColor="@color/text_color"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Sport: "
+        android:id="@+id/sport_informatie_gekozenplek"
+        android:textSize="20dp"
+        android:textColor="@color/text_color"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Specialiteit: "
+        android:id="@+id/specialiteit_informatie_gekozenplek"
+        android:textSize="20dp"
+        android:textColor="@color/text_color"/>
+    </LinearLayout>
+
+</ScrollView>
