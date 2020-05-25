@@ -76,14 +76,12 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     regio = new Regio(regioNaamEditText.getText().toString(), regioBeschrijvingEditText.getText().toString(), hoofdRegioSpinner.getSelectedItem().toString(), regioHoofdstadEditText.getText().toString(), Integer.parseInt(regioPopulatieEditText.getText().toString()), valutaSpinner.getSelectedItem().toString(), soortSpinner.getSelectedItem().toString(), regioAlarmnummerEditText.getText().toString());
                     Toast.makeText(MainActivity.this, "Regio toevoegen gelukt", Toast.LENGTH_LONG).show();
+
+                    // De database helper gebruiken om een nieuwe regio toe te voegen aan de database
+                    databaseHelper.regioToevoegen(regio);
                 } catch (Exception e) {
                     Toast.makeText(MainActivity.this, "Er is een fout opgetreden", Toast.LENGTH_LONG).show();
-                    regio = new Regio("fout", "fout", null, null, null, null, null, null);
                 }
-
-                // De database helper gebruiken om een nieuwe regio toe te voegen aan de database
-                databaseHelper.regioToevoegen(regio);
-
             }
         });
     }

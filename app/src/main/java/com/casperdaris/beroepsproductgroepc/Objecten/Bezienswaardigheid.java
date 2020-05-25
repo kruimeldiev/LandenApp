@@ -2,16 +2,13 @@ package com.casperdaris.beroepsproductgroepc.Objecten;
 
 public class Bezienswaardigheid {
 
-    private String bezienswaardigheidNaam, beschrijving;
-    private Regio regioNaam;
-    private Stad stadNaam;
-    private Boolean betaling;
+    private String bezienswaardigheidNaam, beschrijving, regio, stad, betaling;
 
-    public Bezienswaardigheid(String bezienswaardigheidNaam, String beschrijving, Regio regioNaam, Stad stadNaam, Boolean betaling) {
+    public Bezienswaardigheid(String bezienswaardigheidNaam, String beschrijving, String regioNaam, String stadNaam, String betaling) {
         this.bezienswaardigheidNaam = bezienswaardigheidNaam;
         this.beschrijving = beschrijving;
-        this.regioNaam = regioNaam;
-        this.stadNaam = stadNaam;
+        this.regio = regioNaam;
+        this.stad = stadNaam;
         this.betaling = betaling;
     }
 
@@ -31,27 +28,27 @@ public class Bezienswaardigheid {
         this.beschrijving = beschrijving;
     }
 
-    public Regio getRegioNaam() {
-        return regioNaam;
+    public String getRegio() {
+        return regio;
     }
 
-    public void setRegioNaam(Regio regioNaam) {
-        this.regioNaam = regioNaam;
+    public void setRegio(String regio) {
+        this.regio = regio;
     }
 
-    public Stad getStadNaam() {
-        return stadNaam;
+    public String getStad() {
+        return stad;
     }
 
-    public void setStadNaam(Stad stadNaam) {
-        this.stadNaam = stadNaam;
+    public void setStad(String stad) {
+        this.stad = stad;
     }
 
-    public Boolean getBetaling() {
+    public String getBetaling() {
         return betaling;
     }
 
-    public void setBetaling(Boolean betaling) {
+    public void setBetaling(String betaling) {
         this.betaling = betaling;
     }
 }
