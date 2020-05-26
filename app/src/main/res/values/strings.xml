@@ -1,6 +1,27 @@
 <resources>
     <string name="app_name">BeroepsproductGroepC</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="valuta">
+        <item>Euro</item>
+        <item>Dollar</item>
+        <item>Pond</item>
+        <item>Yen</item>
+        <item>Dinar</item>
+        <item>Frank</item>
+        <item>Kroon</item>
+        <item>Peso</item>
+        <item>Zloty</item>
+        <item>Roebel</item>
+        <item>Rial</item>
+    </string-array>
+
+    <string-array name="regioSoort">
+        <item>Land</item>
+        <item>Provincie</item>
+        <item>Regio</item>
+        <item>Omgeving</item>
+    </string-array>
+
 </resources>

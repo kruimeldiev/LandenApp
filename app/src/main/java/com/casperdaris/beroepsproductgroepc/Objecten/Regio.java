@@ -2,13 +2,10 @@ package com.casperdaris.beroepsproductgroepc.Objecten;
 
 public class Regio {
 
-    private String regioNaam, beschrijving, regioSoort, alarmNummer;
-    private Regio hoofdRegio;
-    private Stad hoofdStad;
+    private String regioNaam, beschrijving, hoofdRegio, hoofdStad, regioValuta, regioSoort, alarmNummer;
     private Integer populatie;
-    private Valuta regioValuta;
 
-    public Regio(String regioNaam, String beschrijving, Regio hoofdRegio, Stad hoofdStad, Integer populatie, Valuta regioValuta, String regioSoort, String alarmNummer) {
+    public Regio(String regioNaam, String beschrijving, String hoofdRegio, String hoofdStad, Integer populatie, String regioValuta, String regioSoort, String alarmNummer) {
         this.regioNaam = regioNaam;
         this.beschrijving = beschrijving;
         this.hoofdRegio = hoofdRegio;
@@ -35,6 +32,30 @@ public class Regio {
         this.beschrijving = beschrijving;
     }
 
+    public String getHoofdRegio() {
+        return hoofdRegio;
+    }
+
+    public void setHoofdRegio(String hoofdRegio) {
+        this.hoofdRegio = hoofdRegio;
+    }
+
+    public String getHoofdStad() {
+        return hoofdStad;
+    }
+
+    public void setHoofdStad(String hoofdStad) {
+        this.hoofdStad = hoofdStad;
+    }
+
+    public String getRegioValuta() {
+        return regioValuta;
+    }
+
+    public void setRegioValuta(String regioValuta) {
+        this.regioValuta = regioValuta;
+    }
+
     public String getRegioSoort() {
         return regioSoort;
     }
@@ -51,35 +72,11 @@ public class Regio {
         this.alarmNummer = alarmNummer;
     }
 
-    public Regio getHoofdRegio() {
-        return hoofdRegio;
-    }
-
-    public void setHoofdRegio(Regio hoofdRegio) {
-        this.hoofdRegio = hoofdRegio;
-    }
-
-    public Stad getHoofdStad() {
-        return hoofdStad;
-    }
-
-    public void setHoofdStad(Stad hoofdStad) {
-        this.hoofdStad = hoofdStad;
-    }
-
     public Integer getPopulatie() {
         return populatie;
     }
 
     public void setPopulatie(Integer populatie) {
         this.populatie = populatie;
-    }
-
-    public Valuta getRegioValuta() {
-        return regioValuta;
-    }
-
-    public void setRegioValuta(Valuta regioValuta) {
-        this.regioValuta = regioValuta;
     }
 }

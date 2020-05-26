@@ -2,10 +2,9 @@ package com.casperdaris.beroepsproductgroepc.Objecten;
 
 public class Stad {
 
-    private String stadNaam;
-    private Regio regioNaam;
+    private String stadNaam, regioNaam;
 
-    public Stad(String stadNaam, Regio regioNaam) {
+    public Stad(String stadNaam, String regioNaam) {
         this.stadNaam = stadNaam;
         this.regioNaam = regioNaam;
     }
@@ -18,11 +17,11 @@ public class Stad {
         this.stadNaam = stadNaam;
     }
 
-    public Regio getRegioNaam() {
+    public String getRegioNaam() {
         return regioNaam;
     }
 
-    public void setRegioNaam(Regio regioNaam) {
+    public void setRegioNaam(String regioNaam) {
         this.regioNaam = regioNaam;
     }
 }

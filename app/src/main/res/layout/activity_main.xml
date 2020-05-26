@@ -1,30 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView"
+    <Button
+        android:id="@+id/naarTabButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Naar TabView"
+        android:layout_margin="20dp"/>
+
+    <EditText
+        android:id="@+id/regioNaamEditText"
+        android:hint="Regio naam"
+        android:padding="4dp"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="#f7fff7"
+        android:layout_margin="4dp"/>
+
+    <EditText
+        android:id="@+id/regioBeschrijvingEditText"
+        android:hint="Regio beschrijving"
+        android:padding="4dp"
+        android:layout_margin="4dp"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="#f7fff7"/>
+
+    <Spinner
+        android:id="@+id/hoofdRegioSpinner"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_margin="4dp"
+        android:background="#f7fff7"/>
+
+    <EditText
+        android:id="@+id/hoofdStadEditText"
+        android:hint="Hoofdstad"
+        android:padding="4dp"
+        android:layout_margin="4dp"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="#f7fff7"/>
+
+    <EditText
+        android:id="@+id/populatieEditText"
+        android:hint="Populatie"
+        android:padding="4dp"
+        android:layout_margin="4dp"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:background="#f7fff7"/>
+
+    <Spinner
+        android:id="@+id/valutaSpinner"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_margin="4dp"
+        android:background="#f7fff7"/>
+
+    <Spinner
+        android:id="@+id/soortSpinner"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_margin="4dp"
+        android:background="#f7fff7"/>
+
+    <EditText
+        android:id="@+id/alarmNummerEditText"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="Alarmnummer"
+        android:padding="4dp"
+        android:layout_margin="4dp"
+        android:inputType="number"
+        android:background="#f7fff7"/>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/regioToevoegKnop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.529" />
+        android:text="Regio toevoegen"
+        android:layout_margin="20dp"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
