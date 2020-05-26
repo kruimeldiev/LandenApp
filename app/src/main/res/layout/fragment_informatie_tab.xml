@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.RegioInformatieTab"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginVertical="20dp">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Taal:"
+            android:textSize="20dp"/>
+
+        <TextView
+            android:id="@+id/taalVanRegio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Gesproken taal"
+            android:textSize="20dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginVertical="20dp">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Valuta:"
+            android:textSize="20dp"/>
+
+        <TextView
+            android:id="@+id/valutaVanRegio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Munteenheid"
+            android:textSize="20dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginVertical="20dp">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Hoofdstad:"
+            android:textSize="20dp"/>
+
+        <TextView
+            android:id="@+id/hoofdstadVanRegio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Stad"
+            android:textSize="20dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginVertical="20dp">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Religie:"
+            android:textSize="20dp"/>
+
+        <TextView
+            android:id="@+id/religieVanRegio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Religie"
+            android:textSize="20dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginVertical="20dp">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Sport:"
+            android:textSize="20dp"/>
+
+        <TextView
+            android:id="@+id/sportVanRegio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sport"
+            android:textSize="20dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginVertical="20dp">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Specialiteit:"
+            android:textSize="20dp"/>
+
+        <TextView
+            android:id="@+id/specialiteitVanRegio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Specialiteit"
+            android:textSize="20dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>
