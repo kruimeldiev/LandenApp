@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".RegioActivity">
+    tools:context=".Activities.RegioActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"

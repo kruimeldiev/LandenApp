@@ -1,9 +1,8 @@
-package com.casperdaris.beroepsproductgroepc;
+package com.casperdaris.beroepsproductgroepc.Activities;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,10 +15,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
+import com.casperdaris.beroepsproductgroepc.DatabaseHelpers.DatabaseHelperRegio;
 import com.casperdaris.beroepsproductgroepc.Objecten.Regio;
+import com.casperdaris.beroepsproductgroepc.R;
 
 import java.util.List;
 
@@ -28,7 +27,7 @@ public class LandenLijstActivity extends AppCompatActivity {
     private ListView landenLijstListView;
     private Toolbar landenLijstToolbar;
     private ArrayAdapter landenArrayAdapter;
-    private DatabaseHelper databaseHelper;
+    private DatabaseHelperRegio databaseHelperRegio;
 
     public Regio geselecteerdeRegio;
 
@@ -41,8 +40,8 @@ public class LandenLijstActivity extends AppCompatActivity {
         landenLijstToolbar = findViewById(R.id.landenLijstToolbar);
 
         // Database helper aanmaken. Deze wordt vervolgens gebruikt om een lijst te maken met alle regio's uit de database
-        databaseHelper = new DatabaseHelper(this);
-        List<String> alleLanden = databaseHelper.landenLijstLaden();
+        databaseHelperRegio = new DatabaseHelperRegio(this);
+        List<String> alleLanden = databaseHelperRegio.landenLijstLaden();
 
         // ArrayAdapter aanmaken en deze adapter vervolgens gebruiken om de ListView mee te vullen
         landenArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, alleLanden);

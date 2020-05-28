@@ -1,4 +1,4 @@
-package com.casperdaris.beroepsproductgroepc;
+package com.casperdaris.beroepsproductgroepc.DatabaseHelpers;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -14,7 +14,7 @@ import com.casperdaris.beroepsproductgroepc.Objecten.Regio;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DatabaseHelper extends SQLiteOpenHelper {
+public class DatabaseHelperRegio extends SQLiteOpenHelper {
 
     // Deze strings zijn de namen van een tabel en columns in de database
     public static final String REGIO_TABLE = "REGIO_TABLE";
@@ -27,36 +27,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_REGIO_SOORT = "REGIO_SOORT";
     public static final String COLUMN_ALARM_NUMMER = "ALARM_NUMMER";
 
-    public static final String BEZIENSWAARDIGHEID_TABLE = "BEZIENSWAARDIGHEID_TABLE";
-    public static final String COLUMN_BEZ_NAAM = "BEZIENSWAARDIGHEID_NAAM";
-    public static final String COLUMN_BEZ_REGIO = "BEZIENSWAARDIGHEID_REGIO";
-    public static final String COLUMN_BEZ_STAD = "BEZIENSWAARDIGHEID_STAD";
-    public static final String COLUMN_BEZ_BETALING = "BEZIENSWAARDIGHEID_BETALING";
-    public static final String COLUMN_BEZ_BESCH = "BEZIENSWAARDIGHEID_BESCHRIJVING";
-
-    public static final String STEDEN_TABLE = "STAD_TABLE";
-    public static final String COLUMN_STAD_NAAM = "STAD_NAAM";
-    public static final String COLUMN_STAD_REGIO = "STAD_REGIO";
-
-    public static final String SPECIALITEIT_TABLE = "SPECIALITEIT_TABLE";
-    public static final String COLUMN_SPECIALITEIT_NAAM = "SPECIALITEIT_NAAM";
-    public static final String COLUMN_SPECIALITEIT_REGIO = "SPECIALITEIT_REGIO";
-
-    public static final String SPORT_TABLE = "SPORT_TABLE";
-    public static final String COLUMN_SPORT_NAAM = "SPORT_NAAM";
-    public static final String COLUMN_SPORT_REGIO = "SPORT_REGIO";
-
-    public static final String RELIGIE_TABLE = "RELIGIE_TABLE";
-    public static final String COLUMN_RELIGIE_NAAM = "RELIGIE_NAAM";
-    public static final String COLUMN_RELIGIE_REGIO = "RELIGIE_REGIO";
-    public static final String COLUMN_RELIGIE_PERCENTAGE = "RELIGIE_PERCENTAGE";
-
-    public static final String TAAL_TABLE = "TAAL_TABLE";
-    public static final String COLUMN_TAAL_NAAM = "TAAL_NAAM";
-    public static final String COLUMN_TAAL_REGIO = "TAAL_REGIO";
-    public static final String COLUMN_TAAL_PERCENTAGE = "TAAL_PERCENTAGE";
-
-    public DatabaseHelper(@Nullable Context context) {
+    public DatabaseHelperRegio(@Nullable Context context) {
         super(context, "regioDatabase", null, 1);
     }
 
@@ -66,24 +37,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Een string aanmaken om vervolgens een tabel mee te maken in de database
         String regioTableMakenStatement = "CREATE TABLE " + REGIO_TABLE + " (" + COLUMN_REGIO_NAAM + " TEXT PRIMARY KEY, " + COLUMN_REGIO_BESCHRIJVING + " TEXT, " + COLUMN_HOOFD_REGIO + " TEXT, " + COLUMN_HOOFD_STAD + " TEXT, " + COLUMN_POPULATIE + " INTEGER, " + COLUMN_REGIO_VALUTA + " TEXT, " + COLUMN_REGIO_SOORT + " TEXT, " + COLUMN_ALARM_NUMMER + " TEXT)";
         db.execSQL(regioTableMakenStatement);
-
-        String bezienswaardigheidTableMakenStatement = "CREATE TABLE " + BEZIENSWAARDIGHEID_TABLE + " (" + COLUMN_BEZ_NAAM + " TEXT PRIMARY KEY, " + COLUMN_BEZ_BESCH + " TEXT, " + COLUMN_BEZ_REGIO + " TEXT, " + COLUMN_BEZ_STAD + " TEXT, " + COLUMN_BEZ_BETALING + "TEXT)";
-        db.execSQL(bezienswaardigheidTableMakenStatement);
-
-        String stedenTableMakenStatement = "CREATE TABLE " + STEDEN_TABLE + " (" + COLUMN_STAD_NAAM + " TEXT PRIMARY KEY, " + COLUMN_STAD_REGIO + " TEXT)";
-        db.execSQL(stedenTableMakenStatement);
-
-        String specialiteitTableMakenStatement = "CREATE TABLE " + SPECIALITEIT_TABLE + " (" + COLUMN_SPECIALITEIT_NAAM + " TEXT PRIMARY KEY, " + COLUMN_SPECIALITEIT_REGIO + " TEXT)";
-        db.execSQL(specialiteitTableMakenStatement);
-
-        String sportTableMakenStatement = "CREATE TABLE " + SPORT_TABLE + " (" + COLUMN_SPORT_NAAM + " TEXT PRIMARY KEY, " + COLUMN_SPORT_REGIO + " TEXT)";
-        db.execSQL(sportTableMakenStatement);
-
-        String religieTableMakenStatement = "CREATE TABLE " + RELIGIE_TABLE + " (" + COLUMN_RELIGIE_NAAM + " TEXT PRIMARY KEY, " + COLUMN_RELIGIE_REGIO + " TEXT, " + COLUMN_RELIGIE_PERCENTAGE + " REAL)";
-        db.execSQL(religieTableMakenStatement);
-
-        String taalTableMakenStatement = "CREATE TABLE " + TAAL_TABLE + " (" + COLUMN_TAAL_NAAM + " TEXT PRIMARY KEY, " + COLUMN_TAAL_REGIO + " TEXT, " + COLUMN_TAAL_PERCENTAGE + " REAL)";
-        db.execSQL(taalTableMakenStatement);
 
         // Landen toevoegen bij het maken van de database
         db.execSQL("INSERT INTO " + REGIO_TABLE + " VALUES ('Nederland', 'Een land is west Europa. Bekend van tulpen, kaas en klompen.', null, 'Amsterdam', '17000000', 'Euro', 'Land', '112')");
@@ -195,7 +148,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return  returnList;
     }
 
-    public Regio geselecteerdLandLaden(String landNaam) {
+    public Regio geselecteerdeRegioLaden(String landNaam) {
 
         Regio geselecteerdLand;
         String query = "SELECT * FROM " + REGIO_TABLE + " WHERE " + COLUMN_REGIO_NAAM + " = '" + landNaam + "'";

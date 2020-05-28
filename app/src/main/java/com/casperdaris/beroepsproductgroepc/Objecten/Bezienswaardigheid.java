@@ -2,9 +2,10 @@ package com.casperdaris.beroepsproductgroepc.Objecten;
 
 public class Bezienswaardigheid {
 
-    private String bezienswaardigheidNaam, beschrijving, regio, stad, betaling;
+    private String bezienswaardigheidNaam, beschrijving, regio, stad;
+    private Boolean betaling;
 
-    public Bezienswaardigheid(String bezienswaardigheidNaam, String beschrijving, String regioNaam, String stadNaam, String betaling) {
+    public Bezienswaardigheid(String bezienswaardigheidNaam, String beschrijving, String regioNaam, String stadNaam, Boolean betaling) {
         this.bezienswaardigheidNaam = bezienswaardigheidNaam;
         this.beschrijving = beschrijving;
         this.regio = regioNaam;
@@ -44,11 +45,11 @@ public class Bezienswaardigheid {
         this.stad = stad;
     }
 
-    public String getBetaling() {
+    public Boolean getBetaling() {
         return betaling;
     }
 
-    public void setBetaling(String betaling) {
+    public void setBetaling(Boolean betaling) {
         this.betaling = betaling;
     }
 }

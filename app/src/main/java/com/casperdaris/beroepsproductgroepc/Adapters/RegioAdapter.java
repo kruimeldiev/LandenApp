@@ -1,4 +1,4 @@
-package com.casperdaris.beroepsproductgroepc;
+package com.casperdaris.beroepsproductgroepc.Adapters;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

@@ -3,11 +3,9 @@ package com.casperdaris.beroepsproductgroepc.Objecten;
 public class RegioTaal {
 
     private String taalNaam;
-    private Regio regioNaam;
 
-    public RegioTaal(String taalNaam, Regio regioNaam) {
+    public RegioTaal(String taalNaam) {
         this.taalNaam = taalNaam;
-        this.regioNaam = regioNaam;
     }
 
     public String getTaalNaam() {
@@ -18,11 +16,4 @@ public class RegioTaal {
         this.taalNaam = taalNaam;
     }
 
-    public Regio getRegioNaam() {
-        return regioNaam;
-    }
-
-    public void setRegioNaam(Regio regioNaam) {
-        this.regioNaam = regioNaam;
-    }
 }
