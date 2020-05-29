@@ -107,7 +107,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO " + RELIGIE_TABLE + " VALUES ('Orthodox-Katholiek', 'Spanje', 92.0 )");
         db.execSQL("INSERT INTO " + RELIGIE_TABLE + " VALUES ('Protestants-Christelijk', 'Portugal', 92.0 )");
         db.execSQL("INSERT INTO " + RELIGIE_TABLE + " VALUES ('Islamitisch', 'Spanje', 92.0 )");
-        db.execSQL("INSERT INTO " + RELIGIE_TABLE + " VALUES ('Joods', 'Portugal', 92.0 )");
+        db.execSQL("INSERT INTO " + RELIGIE_TABLE + " VALUES ('Joods', 'België', 92.0 )");
         db.execSQL("INSERT INTO " + RELIGIE_TABLE + " VALUES ('Boeddhisme', 'Spanje', 92.0 )");
     }
 
@@ -275,5 +275,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             e.printStackTrace();
         }
         return religies;
+    }
+
+    public List<String> filterLandenList(ArrayList<String> talen, ArrayList<String> religie) {
+        List<String> landenList = new ArrayList<>();
+        String query = "SELECT DISTINCT " + REGIO_TABLE + "." + COLUMN_REGIO_NAAM + "\n FROM " + REGIO_TABLE +
+                " LEFT JOIN " + TAAL_TABLE + " ON (" + REGIO_TABLE + "." + COLUMN_REGIO_NAAM + " = " + TAAL_TABLE + "." + COLUMN_TAAL_REGIO + ")" +
+                "\n LEFT JOIN " + RELIGIE_TABLE + " ON (" + REGIO_TABLE + "." + COLUMN_REGIO_NAAM + " = " + RELIGIE_TABLE + "." + COLUMN_RELIGIE_REGIO + ")" +
+                "\n WHERE (" + TAAL_TABLE + "." + COLUMN_TAAL_NAAM + " IN ('Nederlands', 'Duits')" +
+                " OR " + RELIGIE_TABLE + "." + COLUMN_RELIGIE_NAAM + " IN ('Islamitisch'))" +
+                " AND " + REGIO_TABLE + "." + COLUMN_REGIO_SOORT + " = 'Land'";
+        Log.i("query1", query);
+
+        try (SQLiteDatabase db = getWritableDatabase(); Cursor cursor = db.rawQuery(query, null)) {
+            while (cursor.moveToNext()) {
+                Log.i("tal", cursor.getString(cursor.getColumnIndex(COLUMN_REGIO_NAAM)));
+                landenList.add(cursor.getString(cursor.getColumnIndex(COLUMN_REGIO_NAAM)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return landenList;
     }
 }

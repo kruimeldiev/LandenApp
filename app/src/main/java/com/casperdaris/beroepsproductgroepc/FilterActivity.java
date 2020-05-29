@@ -77,7 +77,16 @@ public class FilterActivity extends AppCompatActivity {
         bevestigen.setOnClickListener(view -> {
             filterViewModel.setSelectedTalen(selectedTalen);
             filterViewModel.setSelectedReligies(selectedReligies);
+            ArrayList<String> taalList = new ArrayList<>();
+            ArrayList<String> religieList = new ArrayList<>();
+            taalList.addAll(selectedTalen);
+            religieList.addAll(selectedReligies);
+
             Intent intent = new Intent(this, LandenLijstActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putStringArrayList("talen", taalList);
+            bundle.putStringArrayList("religie", religieList);
+            intent.putExtras(bundle);
             startActivity(intent);
         });
     }

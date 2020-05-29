@@ -19,8 +19,8 @@ public class FilterViewModel extends AndroidViewModel {
     private DatabaseHelper databaseHelper;
     private MutableLiveData<List<Taal>> talen;
     private MutableLiveData<List<Religie>> religies;
-    private MutableLiveData<List<Taal>> selectedTalen;
-    private MutableLiveData<List<Religie>> selectedReligies;
+    private List<Taal> selectedTalen;
+    private List<Religie> selectedReligies;
 
     public FilterViewModel(@NonNull Application application) {
         super(application);
@@ -29,8 +29,8 @@ public class FilterViewModel extends AndroidViewModel {
         talen.postValue(databaseHelper.getTalen());
         religies = new MutableLiveData<>();
         religies.postValue(databaseHelper.getReligies());
-        selectedTalen = new MutableLiveData<>();
-        selectedReligies = new MutableLiveData<>();
+        selectedTalen = new ArrayList<>();
+        selectedReligies = new ArrayList<>();
     }
 
     public MutableLiveData<List<Taal>> getTalen() {
@@ -46,9 +46,8 @@ public class FilterViewModel extends AndroidViewModel {
         selectedTalen.forEach(taalNaam -> {
             Taal taal = new Taal(taalNaam);
             taalList.add(taal);
-            Log.i("taal", taal.getTaal());
         });
-        this.selectedTalen.postValue(taalList);
+        this.selectedTalen = taalList;
     }
 
     public void setSelectedReligies(Set<String> selectedReligies) {
@@ -56,16 +55,15 @@ public class FilterViewModel extends AndroidViewModel {
         selectedReligies.forEach(religieNaam -> {
             Religie religie = new Religie(religieNaam);
             religieList.add(religie);
-            Log.i("religie", religie.getReligie());
         });
-        this.selectedReligies.postValue(religieList);
+        this.selectedReligies = religieList;
     }
 
-    public MutableLiveData<List<Taal>> getSelectedTalen() {
+    public List<Taal> getSelectedTalen() {
         return selectedTalen;
     }
 
-    public MutableLiveData<List<Religie>> getSelectedReligies() {
+    public List<Religie> getSelectedReligies() {
         return selectedReligies;
     }
 }

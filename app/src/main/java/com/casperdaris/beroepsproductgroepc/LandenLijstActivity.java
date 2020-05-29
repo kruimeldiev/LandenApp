@@ -3,10 +3,10 @@ package com.casperdaris.beroepsproductgroepc;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,16 +15,14 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
+
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.casperdaris.beroepsproductgroepc.Objecten.Regio;
-import com.casperdaris.beroepsproductgroepc.Objecten.Taal;
-import com.casperdaris.beroepsproductgroepc.viewmodel.FilterViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class LandenLijstActivity extends AppCompatActivity {
 
@@ -32,7 +30,6 @@ public class LandenLijstActivity extends AppCompatActivity {
     private Toolbar landenLijstToolbar;
     private ArrayAdapter landenArrayAdapter;
     private DatabaseHelper databaseHelper;
-    private FilterViewModel filterViewModel;
 
     public Regio geselecteerdeRegio;
 
@@ -40,13 +37,24 @@ public class LandenLijstActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landen_lijst);
-        filterViewModel = new ViewModelProvider(this).get(FilterViewModel.class);
         landenLijstListView = findViewById(R.id.landenListView);
         landenLijstToolbar = findViewById(R.id.landenLijstToolbar);
-
-        // Database helper aanmaken. Deze wordt vervolgens gebruikt om een lijst te maken met alle regio's uit de database
         databaseHelper = new DatabaseHelper(this);
-        List<String> alleLanden = databaseHelper.landenLijstLaden();
+
+        List<String> alleLanden = new ArrayList<>();
+        Bundle bundle = getIntent().getExtras();
+        if(bundle == null) {
+            alleLanden = databaseHelper.landenLijstLaden();
+        } else {
+            try {
+                ArrayList<String> talen = bundle.getStringArrayList("talen");
+                ArrayList<String> religie = bundle.getStringArrayList("religie");
+                alleLanden = databaseHelper.filterLandenList(talen, religie);
+            } catch (Exception e) {
+                Log.i("talen", e.getMessage());
+                e.printStackTrace();
+            }
+        }
 
         // ArrayAdapter aanmaken en deze adapter vervolgens gebruiken om de ListView mee te vullen
         landenArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, alleLanden);
@@ -69,14 +77,14 @@ public class LandenLijstActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater= getMenuInflater();
+        MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.example_menu, menu);
 
-        MenuItem searchItem= menu.findItem(R.id.action_search);
-        MenuItem filterItem= menu.findItem(R.id.action_filter);
-        MenuItem helpItem= menu.findItem(R.id.action_help);
-        MenuItem mapItem= menu.findItem(R.id.action_map);
-        SearchView searchView= (SearchView) searchItem.getActionView();
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        MenuItem filterItem = menu.findItem(R.id.action_filter);
+        MenuItem helpItem = menu.findItem(R.id.action_help);
+        MenuItem mapItem = menu.findItem(R.id.action_map);
+        SearchView searchView = (SearchView) searchItem.getActionView();
 
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);// set drawable icon
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
