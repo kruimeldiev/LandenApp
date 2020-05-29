@@ -277,37 +277,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return religies;
     }
 
-    public List<String> filterLandenList(ArrayList<String> talen, ArrayList<String> religie) {
+    /**
+     * Maakt uit List met database records die voldoen aan de opgegeven filtercriteria
+     * Criteria worden aangeleverd als Lists van dynamische groote
+     * Records die aan één criteria voldoen worden teruggekeerd
+     * @param talen List met talen waarop gefilterd moet worden
+     * @param religie list met religie waarop gefilterd moet worden
+     * @return List met Landnamen die voldoen aan de geselecteerde filter
+     */
+    public List<String> filterLandenList(List<String> talen, List<String> religie) {
         List<String> landenList = new ArrayList<>();
+        List<String> parametersList = new ArrayList<>();
+        parametersList.addAll(talen);
+        parametersList.addAll(religie);
+        String[] selectionArgs = parametersList.toArray(new String[0]);
 
-        int parameters = talen.size() + religie.size();
-        Log.i("parameters:", String.valueOf(parameters));
-        String[] selectionArgs = new String[parameters];
-        for (int i = 0; i < talen.size(); i++) {
-            selectionArgs[i] = talen.get(i);
-            Log.i("taal:", i + selectionArgs[i]);
-        }
-        Log.i("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + talen.size());
-
-        for (int i = talen.size(); i < parameters - 1; i++) {
-            selectionArgs[i] = religie.get(i);
-            Log.i("religie:", i + selectionArgs[i]);
-        }
-
-        Log.i("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-
-        String query = "SELECT DISTINCT " + REGIO_TABLE + "." + COLUMN_REGIO_NAAM + "\n FROM " + REGIO_TABLE +
+        String query = "SELECT DISTINCT " + REGIO_TABLE + "." + COLUMN_REGIO_NAAM + " FROM " + REGIO_TABLE +
                 " LEFT JOIN " + TAAL_TABLE + " ON (" + REGIO_TABLE + "." + COLUMN_REGIO_NAAM + " = " + TAAL_TABLE + "." + COLUMN_TAAL_REGIO + ")" +
-                "\n LEFT JOIN " + RELIGIE_TABLE + " ON (" + REGIO_TABLE + "." + COLUMN_REGIO_NAAM + " = " + RELIGIE_TABLE + "." + COLUMN_RELIGIE_REGIO + ")" +
-                "\n WHERE (" + TAAL_TABLE + "." + COLUMN_TAAL_NAAM + " IN (" + makePlaceHolders(talen.size()) + ")" +
-                "\n OR " + RELIGIE_TABLE + "." + COLUMN_RELIGIE_NAAM + " IN (" + makePlaceHolders(religie.size()) + "))" +
-                "\n AND " + REGIO_TABLE + "." + COLUMN_REGIO_SOORT + " = 'Land'";
-
-        Log.i("Query", query);
+                " LEFT JOIN " + RELIGIE_TABLE + " ON (" + REGIO_TABLE + "." + COLUMN_REGIO_NAAM + " = " + RELIGIE_TABLE + "." + COLUMN_RELIGIE_REGIO + ")" +
+                " WHERE (" + TAAL_TABLE + "." + COLUMN_TAAL_NAAM + " IN (" + makePlaceHolders(talen.size()) + ")" +
+                " OR " + RELIGIE_TABLE + "." + COLUMN_RELIGIE_NAAM + " IN (" + makePlaceHolders(religie.size()) + "))" +
+                " AND " + REGIO_TABLE + "." + COLUMN_REGIO_SOORT + " = 'Land'";
 
         try (SQLiteDatabase db = getWritableDatabase(); Cursor cursor = db.rawQuery(query, selectionArgs)) {
             while (cursor.moveToNext()) {
-                Log.i("tal", cursor.getString(cursor.getColumnIndex(COLUMN_REGIO_NAAM)));
                 landenList.add(cursor.getString(cursor.getColumnIndex(COLUMN_REGIO_NAAM)));
             }
         } catch (Exception e) {
@@ -316,6 +309,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return landenList;
     }
 
+    /**
+     * Zet lengte van een collection om naar een gelijkt aantal placeHolders
+     * Minimale aantal placeHolders is 1
+     * @param length Lengte van de collectie waar placeholders voor gemaakt moeten worden
+     * @return String met dynamisch aantal placeholders
+     */
     private String makePlaceHolders(int length) {
         StringBuilder sb = new StringBuilder();
         sb.append("?");
