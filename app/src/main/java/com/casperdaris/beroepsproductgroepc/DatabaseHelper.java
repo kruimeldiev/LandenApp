@@ -281,7 +281,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * Maakt uit List met database records die voldoen aan de opgegeven filtercriteria
      * Criteria worden aangeleverd als Lists van dynamische groote
      * Records die aan één criteria voldoen worden teruggekeerd
-     * @param talen List met talen waarop gefilterd moet worden
+     *
+     * @param talen   List met talen waarop gefilterd moet worden
      * @param religie list met religie waarop gefilterd moet worden
      * @return List met Landnamen die voldoen aan de geselecteerde filter
      */
@@ -310,17 +311,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * Zet lengte van een collection om naar een gelijkt aantal placeHolders
-     * Minimale aantal placeHolders is 1
+     * Zet lengte van een collection om naar een gelijk aantal placeHolders
+     *
      * @param length Lengte van de collectie waar placeholders voor gemaakt moeten worden
      * @return String met dynamisch aantal placeholders
      */
     private String makePlaceHolders(int length) {
         StringBuilder sb = new StringBuilder();
-        sb.append("?");
-        for (int i = 1; i < length; i++) {
-            sb.append(",?");
+        if (length == 0) {
+            return null;
+        } else {
+            sb.append("?");
+            for (int i = 1; i < length; i++) {
+                sb.append(",?");
+            }
+            return sb.toString();
         }
-        return sb.toString();
     }
 }
