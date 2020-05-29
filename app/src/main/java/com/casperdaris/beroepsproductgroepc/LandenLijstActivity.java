@@ -51,7 +51,6 @@ public class LandenLijstActivity extends AppCompatActivity {
                 ArrayList<String> religie = bundle.getStringArrayList("religie");
                 alleLanden = databaseHelper.filterLandenList(talen, religie);
             } catch (Exception e) {
-                Log.i("talen", e.getMessage());
                 e.printStackTrace();
             }
         }

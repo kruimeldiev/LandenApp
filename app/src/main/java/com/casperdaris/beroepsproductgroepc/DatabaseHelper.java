@@ -279,15 +279,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public List<String> filterLandenList(ArrayList<String> talen, ArrayList<String> religie) {
         List<String> landenList = new ArrayList<>();
+
+        int parameters = talen.size() + religie.size();
+        Log.i("parameters:", String.valueOf(parameters));
+        String[] selectionArgs = new String[parameters];
+        for (int i = 0; i < talen.size(); i++) {
+            selectionArgs[i] = talen.get(i);
+            Log.i("taal:", i + selectionArgs[i]);
+        }
+        Log.i("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + talen.size());
+
+        for (int i = talen.size(); i < parameters - 1; i++) {
+            selectionArgs[i] = religie.get(i);
+            Log.i("religie:", i + selectionArgs[i]);
+        }
+
+        Log.i("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+
         String query = "SELECT DISTINCT " + REGIO_TABLE + "." + COLUMN_REGIO_NAAM + "\n FROM " + REGIO_TABLE +
                 " LEFT JOIN " + TAAL_TABLE + " ON (" + REGIO_TABLE + "." + COLUMN_REGIO_NAAM + " = " + TAAL_TABLE + "." + COLUMN_TAAL_REGIO + ")" +
                 "\n LEFT JOIN " + RELIGIE_TABLE + " ON (" + REGIO_TABLE + "." + COLUMN_REGIO_NAAM + " = " + RELIGIE_TABLE + "." + COLUMN_RELIGIE_REGIO + ")" +
-                "\n WHERE (" + TAAL_TABLE + "." + COLUMN_TAAL_NAAM + " IN ('Nederlands', 'Duits')" +
-                " OR " + RELIGIE_TABLE + "." + COLUMN_RELIGIE_NAAM + " IN ('Islamitisch'))" +
-                " AND " + REGIO_TABLE + "." + COLUMN_REGIO_SOORT + " = 'Land'";
-        Log.i("query1", query);
+                "\n WHERE (" + TAAL_TABLE + "." + COLUMN_TAAL_NAAM + " IN (" + makePlaceHolders(talen.size()) + ")" +
+                "\n OR " + RELIGIE_TABLE + "." + COLUMN_RELIGIE_NAAM + " IN (" + makePlaceHolders(religie.size()) + "))" +
+                "\n AND " + REGIO_TABLE + "." + COLUMN_REGIO_SOORT + " = 'Land'";
 
-        try (SQLiteDatabase db = getWritableDatabase(); Cursor cursor = db.rawQuery(query, null)) {
+        Log.i("Query", query);
+
+        try (SQLiteDatabase db = getWritableDatabase(); Cursor cursor = db.rawQuery(query, selectionArgs)) {
             while (cursor.moveToNext()) {
                 Log.i("tal", cursor.getString(cursor.getColumnIndex(COLUMN_REGIO_NAAM)));
                 landenList.add(cursor.getString(cursor.getColumnIndex(COLUMN_REGIO_NAAM)));
@@ -296,5 +314,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             e.printStackTrace();
         }
         return landenList;
+    }
+
+    private String makePlaceHolders(int length) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("?");
+        for (int i = 1; i < length; i++) {
+            sb.append(",?");
+        }
+        return sb.toString();
     }
 }
