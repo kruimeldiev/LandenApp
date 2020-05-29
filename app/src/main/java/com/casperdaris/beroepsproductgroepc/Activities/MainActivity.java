@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.casperdaris.beroepsproductgroepc.DatabaseHelpers.DatabaseHelperRegio;
+import com.casperdaris.beroepsproductgroepc.DatabaseHelpers.DatabaseHelper;
 import com.casperdaris.beroepsproductgroepc.Objecten.Regio;
 import com.casperdaris.beroepsproductgroepc.R;
 
@@ -23,14 +23,14 @@ public class MainActivity extends AppCompatActivity {
     private EditText regioNaamEditText, regioBeschrijvingEditText, regioHoofdstadEditText, regioPopulatieEditText, regioAlarmnummerEditText;
     private Spinner hoofdRegioSpinner, valutaSpinner, soortSpinner;
 
-    private DatabaseHelperRegio databaseHelperRegio;
+    private DatabaseHelper databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        databaseHelperRegio = new DatabaseHelperRegio(MainActivity.this);
+        databaseHelper = new DatabaseHelper(MainActivity.this);
 
         testKnop = findViewById(R.id.naarTabButton);
         toevoegKnop = findViewById(R.id.regioToevoegKnop);
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // De data voor de hoofdregio spinner ophalen
-        List<String> alleLanden = databaseHelperRegio.landenLijstLaden();
+        List<String> alleLanden = databaseHelper.landenLijstLaden();
         ArrayAdapter<String> hoofdRegioSpinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, alleLanden);
         hoofdRegioSpinner.setAdapter(hoofdRegioSpinnerAdapter);
 
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Regio toevoegen gelukt", Toast.LENGTH_LONG).show();
 
                     // De database helper gebruiken om een nieuwe regio toe te voegen aan de database
-                    databaseHelperRegio.regioToevoegen(regio);
+                    databaseHelper.regioToevoegen(regio);
                 } catch (Exception e) {
                     Toast.makeText(MainActivity.this, "Er is een fout opgetreden", Toast.LENGTH_LONG).show();
                 }
