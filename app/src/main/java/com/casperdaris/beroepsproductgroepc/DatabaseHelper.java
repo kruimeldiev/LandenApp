@@ -6,10 +6,13 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
 import com.casperdaris.beroepsproductgroepc.Objecten.Regio;
+import com.casperdaris.beroepsproductgroepc.Objecten.Religie;
+import com.casperdaris.beroepsproductgroepc.Objecten.Taal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,6 +93,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO " + REGIO_TABLE + " VALUES ('België', 'België ligt tussen Nederland en Frankrijk in. Het land staat bekend om hun chocolade en wafels.', null, 'Brussel', '11460000', 'Euro', 'Land', '112')");
         db.execSQL("INSERT INTO " + REGIO_TABLE + " VALUES ('Duitsland', 'Een van de grootste landen in Europa met een oppervlakte van 357.022 vierkante kilometer.', null, 'Berlijn', '80594017', 'Euro', 'Land', '112')");
         db.execSQL("INSERT INTO " + REGIO_TABLE + " VALUES ('Noord-Brabant', 'De mooiste provincie van heel Nederland.', 'Nederland', 'Den Bosch', '2500000', null, 'Provincie', null)");
+
+        db.execSQL("INSERT INTO " + TAAL_TABLE + " VALUES ('Nederlands', 'Nederland', 92.0 )");
+        db.execSQL("INSERT INTO " + TAAL_TABLE + " VALUES ('Duits', 'Duitsland', 92.0 )");
+        db.execSQL("INSERT INTO " + TAAL_TABLE + " VALUES ('Frans', 'Frankrijk', 92.0 )");
+        db.execSQL("INSERT INTO " + TAAL_TABLE + " VALUES ('Portugees', 'Portugal', 92.0 )");
+        db.execSQL("INSERT INTO " + TAAL_TABLE + " VALUES ('Spaans', 'Spanje', 92.0 )");
+        db.execSQL("INSERT INTO " + TAAL_TABLE + " VALUES ('Italiaans', 'Italië', 92.0 )");
+        db.execSQL("INSERT INTO " + TAAL_TABLE + " VALUES ('Turks', 'Turkije', 92.0 )");
+        db.execSQL("INSERT INTO " + TAAL_TABLE + " VALUES ('Grieks', 'Griekenland', 92.0 )");
+
+        db.execSQL("INSERT INTO " + RELIGIE_TABLE + " VALUES ('Rooms-Katholiek', 'Portugal', 92.0 )");
+        db.execSQL("INSERT INTO " + RELIGIE_TABLE + " VALUES ('Orthodox-Katholiek', 'Spanje', 92.0 )");
+        db.execSQL("INSERT INTO " + RELIGIE_TABLE + " VALUES ('Protestants-Christelijk', 'Portugal', 92.0 )");
+        db.execSQL("INSERT INTO " + RELIGIE_TABLE + " VALUES ('Islamitisch', 'Spanje', 92.0 )");
+        db.execSQL("INSERT INTO " + RELIGIE_TABLE + " VALUES ('Joods', 'Portugal', 92.0 )");
+        db.execSQL("INSERT INTO " + RELIGIE_TABLE + " VALUES ('Boeddhisme', 'Spanje', 92.0 )");
     }
 
     @Override
@@ -192,7 +211,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         cursor.close();
         db.close();
-        return  returnList;
+        return returnList;
     }
 
     public Regio geselecteerdLandLaden(String landNaam) {
@@ -217,5 +236,44 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return geselecteerdLand;
+    }
+
+
+    /**
+     * Methode voor het ophalen van een lijst met alle unieke talen in de database
+     *
+     * @return List met talen
+     */
+    public List<Taal> getTalen() {
+        List<Taal> talen = new ArrayList<>();
+        String query = "SELECT DISTINCT " + COLUMN_TAAL_NAAM + " FROM " + TAAL_TABLE;
+        try (SQLiteDatabase db = getWritableDatabase(); Cursor cursor = db.rawQuery(query, null)) {
+            while (cursor.moveToNext()) {
+                Taal taal = new Taal(cursor.getString(cursor.getColumnIndex(COLUMN_TAAL_NAAM)));
+                talen.add(taal);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return talen;
+    }
+
+    /**
+     * Methode voor het ophalen van een lijst met alle unieke religies in de database
+     *
+     * @return List met religies
+     */
+    public List<Religie> getReligies() {
+        List<Religie> religies = new ArrayList<>();
+        String query = "SELECT DISTINCT " + COLUMN_RELIGIE_NAAM + " FROM " + RELIGIE_TABLE;
+        try (SQLiteDatabase db = getWritableDatabase(); Cursor cursor = db.rawQuery(query, null)) {
+            while (cursor.moveToNext()) {
+                Religie religie = new Religie(cursor.getString(cursor.getColumnIndex(COLUMN_RELIGIE_NAAM)));
+                religies.add(religie);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return religies;
     }
 }

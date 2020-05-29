@@ -16,10 +16,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.casperdaris.beroepsproductgroepc.Objecten.Regio;
+import com.casperdaris.beroepsproductgroepc.Objecten.Taal;
+import com.casperdaris.beroepsproductgroepc.viewmodel.FilterViewModel;
 
 import java.util.List;
 
@@ -29,6 +32,7 @@ public class LandenLijstActivity extends AppCompatActivity {
     private Toolbar landenLijstToolbar;
     private ArrayAdapter landenArrayAdapter;
     private DatabaseHelper databaseHelper;
+    private FilterViewModel filterViewModel;
 
     public Regio geselecteerdeRegio;
 
@@ -36,7 +40,7 @@ public class LandenLijstActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landen_lijst);
-
+        filterViewModel = new ViewModelProvider(this).get(FilterViewModel.class);
         landenLijstListView = findViewById(R.id.landenListView);
         landenLijstToolbar = findViewById(R.id.landenLijstToolbar);
 
@@ -80,7 +84,7 @@ public class LandenLijstActivity extends AppCompatActivity {
         filterItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                Intent i = new Intent(LandenLijstActivity.this, FiltersvoorZoeken.class);
+                Intent i = new Intent(LandenLijstActivity.this, FilterActivity.class);
                 startActivity(i);
                 return false;
             }
