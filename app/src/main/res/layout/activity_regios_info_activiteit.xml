@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.RegiosInfoActiviteit"
+    android:background="@color/White">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:id="@+id/backbutton_regios_info_activiteit"
+                android:src="@drawable/ic_arrow_back_black_24dp"
+                android:layout_alignParentLeft="true"/>
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:background="@color/White"
+                android:src="@drawable/ic_help_black_24dp"
+                android:id="@+id/helpbutton_regios_info_activiteit"
+                android:layout_alignParentRight="true"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:id="@+id/naam_regios_gekozenplek"
+            android:textSize="30sp"
+            android:textColor="@color/text_color"
+            android:layout_gravity="center"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginVertical="20dp">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Taal:"
+            android:textSize="20dp"
+            android:textColor="@color/text_color"/>
+
+        <TextView
+            android:id="@+id/taalVanRegio_infoactiviteit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Gesproken taal"
+            android:textSize="20dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginVertical="20dp">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Valuta:"
+            android:textSize="20dp"
+            android:textColor="@color/text_color"/>
+
+        <TextView
+            android:id="@+id/valutaVanRegio_infoactiviteit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Munteenheid"
+            android:textSize="20dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginVertical="20dp">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Hoofdstad:"
+            android:textSize="20dp"
+            android:textColor="@color/text_color"/>
+
+        <TextView
+            android:id="@+id/hoofdstadVanRegio_infoactiviteit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Stad"
+            android:textSize="20dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginVertical="20dp">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Religie:"
+            android:textSize="20dp"
+            android:textColor="@color/text_color"/>
+
+        <TextView
+            android:id="@+id/religieVanRegio_infoactiviteit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Religie"
+            android:textSize="20dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginVertical="20dp">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Sport:"
+            android:textSize="20dp"
+            android:textColor="@color/text_color"/>
+
+        <TextView
+            android:id="@+id/sportVanRegio_infoactiviteit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sport"
+            android:textSize="20dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginVertical="20dp">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Specialiteit:"
+            android:textSize="20dp"
+            android:textColor="@color/text_color"/>
+
+        <TextView
+            android:id="@+id/specialiteitVanRegio_infoactiviteit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Specialiteit"
+            android:textSize="20dp"/>
+
+</LinearLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>
