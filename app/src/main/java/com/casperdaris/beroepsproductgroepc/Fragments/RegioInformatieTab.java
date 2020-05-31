@@ -27,13 +27,10 @@ public class RegioInformatieTab extends Fragment {
     TextView tvtaal, tvvaluta, tvhoofdstad, tvreligie, tvsport, tvspecialiteit;
     private Regio geselecteerdeRegio;
     private DatabaseHelperRegio databaseHelperregio;
-    private RegioReligie geselecteerdeReligieRegio;
     private DatabaseHelperReligie databaseHelperReligie;
-    private RegioSpecialiteit geselecteerdeSpecialiteitRegio;
     private DatabaseHelperSpecialiteit databaseHelperSpecialiteit;
-    private RegioSport geselecteerdeSportRegio;
+    private String geselecteerdeSportRegio,geselecteerdeTaalRegio, geselecteerdeReligieRegio, geselecteerdeSpecialiteitRegio;
     private DatabaseHelperSport databaseHelperSport;
-    private RegioTaal geselecteerdeTaalRegio;
     private DatabaseHelperTaal databaseHelperTaal;
 
 
@@ -64,17 +61,17 @@ public class RegioInformatieTab extends Fragment {
 
 
             tvtaal= (TextView) v.findViewById(R.id.taalVanRegio);
-            tvtaal.setText(geselecteerdeTaalRegio.getTaalNaam());
+            tvtaal.setText(geselecteerdeTaalRegio);
             tvvaluta= (TextView) v.findViewById(R.id.valutaVanRegio);
             tvvaluta.setText(geselecteerdeRegio.getRegioValuta());
             tvhoofdstad= (TextView) v.findViewById(R.id.hoofdstadVanRegio);
             tvhoofdstad.setText(geselecteerdeRegio.getHoofdStad());
             tvreligie= (TextView) v.findViewById(R.id.religieVanRegio);
-            tvreligie.setText(geselecteerdeReligieRegio.getReligieNaam());
+            tvreligie.setText(geselecteerdeReligieRegio);
             tvsport= (TextView) v.findViewById(R.id.sportVanRegio);
-            tvsport.setText(geselecteerdeSportRegio.getSportNaam());
+            tvsport.setText(geselecteerdeSportRegio);
             tvspecialiteit= (TextView) v.findViewById(R.id.specialiteitVanRegio);
-            tvspecialiteit.setText(geselecteerdeSpecialiteitRegio.getSpecialiteitNaam());
+            tvspecialiteit.setText(geselecteerdeSpecialiteitRegio);
         }
 
         return v;

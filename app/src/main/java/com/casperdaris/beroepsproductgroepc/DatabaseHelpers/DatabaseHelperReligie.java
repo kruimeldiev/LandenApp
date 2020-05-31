@@ -9,6 +9,10 @@ import androidx.annotation.Nullable;
 
 import com.casperdaris.beroepsproductgroepc.Objecten.Regio;
 import com.casperdaris.beroepsproductgroepc.Objecten.RegioReligie;
+import com.casperdaris.beroepsproductgroepc.Objecten.RegioSport;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseHelperReligie extends SQLiteOpenHelper {
 
@@ -37,23 +41,26 @@ public class DatabaseHelperReligie extends SQLiteOpenHelper {
 
     }
 
-    public RegioReligie geselecteerdeRegio(String landNaam) {
+    public String geselecteerdeRegio(String landNaam) {
+        List<String> list;
+        list= new ArrayList<>();
 
         RegioReligie geselecteerdLand;
-        String query = "SELECT * FROM " + RELIGIE_TABLE + " WHERE " + COLUMN_RELIGIE_REGIO + " = '" + landNaam + "'";
+        String query = "SELECT DISTINCT " + COLUMN_RELIGIE_NAAM + " FROM " + RELIGIE_TABLE + " WHERE " + COLUMN_RELIGIE_REGIO + " = '" + landNaam + "'";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToFirst()) {
-            String religieNaam = cursor.getString(0);
-            String regioNaam = cursor.getString(1);
-            Integer percentage = cursor.getInt(2);
-            geselecteerdLand = new RegioReligie(religieNaam);
-
+            do {
+                String religieNaam = cursor.getString(0);
+                geselecteerdLand = new RegioReligie(religieNaam);
+                list.add(geselecteerdLand.getReligieNaam());
+            } while (cursor.moveToNext());
         } else {
-            geselecteerdLand = new RegioReligie("fout");
+            geselecteerdLand = new RegioReligie("Geen religie voor "+ landNaam);
+            list.add(geselecteerdLand.getReligieNaam());
         }
         cursor.close();
         db.close();
-        return geselecteerdLand;
+        return list.toString();
     }
 }

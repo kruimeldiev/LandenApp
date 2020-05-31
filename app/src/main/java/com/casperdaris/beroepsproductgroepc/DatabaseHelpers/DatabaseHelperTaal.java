@@ -7,8 +7,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import com.casperdaris.beroepsproductgroepc.Objecten.RegioSport;
 import com.casperdaris.beroepsproductgroepc.Objecten.RegioTaal;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseHelperTaal extends SQLiteOpenHelper {
 
@@ -37,22 +39,27 @@ public class DatabaseHelperTaal extends SQLiteOpenHelper {
 
     }
 
-    public RegioTaal geselecteerdeRegio(String landNaam) {
+    public String geselecteerdeRegio(String landNaam) {
+        List<String> list;
+        list= new ArrayList<>();
 
         RegioTaal geselecteerdLand;
-        String query = "SELECT * FROM " + TAAL_TABLE + " WHERE " + COLUMN_TAAL_REGIO + " = '" + landNaam + "'";
+        String query = "SELECT DISTINCT " + COLUMN_TAAL_NAAM + " FROM " + TAAL_TABLE + " WHERE " + COLUMN_TAAL_REGIO + " = '" + landNaam + "'";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToFirst()) {
-            String taalNaam = cursor.getString(0);
-            String regioNaam = cursor.getString(1);
-            geselecteerdLand = new RegioTaal(taalNaam);
+            do {
+                String taalNaam = cursor.getString(0);
+                geselecteerdLand = new RegioTaal(taalNaam);
+                list.add(geselecteerdLand.getTaalNaam());
+            } while (cursor.moveToNext());
 
         } else {
-            geselecteerdLand = new RegioTaal("fout");
+            geselecteerdLand = new RegioTaal("Geen taal voor "+ landNaam);
+            list.add(geselecteerdLand.getTaalNaam());
         }
         cursor.close();
         db.close();
-        return geselecteerdLand;
+        return list.toString();
     }
 }

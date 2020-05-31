@@ -9,6 +9,10 @@ import androidx.annotation.Nullable;
 
 import com.casperdaris.beroepsproductgroepc.Objecten.RegioSpecialiteit;
 import com.casperdaris.beroepsproductgroepc.Objecten.RegioSport;
+import com.casperdaris.beroepsproductgroepc.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseHelperSport extends SQLiteOpenHelper {
 
@@ -36,21 +40,26 @@ public class DatabaseHelperSport extends SQLiteOpenHelper {
 
     }
 
-    public RegioSport geselecteerdeRegio(String landNaam) {
-
+    public String geselecteerdeRegio(String landNaam) {
+        List<String> list;
+        list= new ArrayList<>();
         RegioSport geselecteerdLand;
-        String query = "SELECT * FROM " + SPORT_TABLE + " WHERE " + COLUMN_SPORT_REGIO + " = '" + landNaam + "'";
+        String query = "SELECT DISTINCT " + COLUMN_SPORT_NAAM + " FROM " + SPORT_TABLE + " WHERE " + COLUMN_SPORT_REGIO + " = '" + landNaam + "'";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
-        if (cursor.moveToFirst()) {
-            String sportNaam = cursor.getString(0);
-            geselecteerdLand = new RegioSport(sportNaam);
-
-        } else {
-            geselecteerdLand = new RegioSport("fout");
-        }
+            if (cursor.moveToFirst()) {
+                do {
+                    String sportNaam = cursor.getString(0);
+                    geselecteerdLand = new RegioSport(sportNaam);
+                    list.add(geselecteerdLand.getSportNaam());
+                } while (cursor.moveToNext());
+            } else {
+                geselecteerdLand = new RegioSport("Geen sport voor "+ landNaam);
+                list.add(geselecteerdLand.getSportNaam());
+            }
         cursor.close();
         db.close();
-        return geselecteerdLand;
+
+        return list.toString();
     }
 }

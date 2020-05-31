@@ -10,6 +10,9 @@ import androidx.annotation.Nullable;
 import com.casperdaris.beroepsproductgroepc.Objecten.RegioReligie;
 import com.casperdaris.beroepsproductgroepc.Objecten.RegioSpecialiteit;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DatabaseHelperSpecialiteit extends SQLiteOpenHelper {
 
     public static final String SPECIALITEIT_TABLE = "SPECIALITEIT_TABLE";
@@ -35,22 +38,27 @@ public class DatabaseHelperSpecialiteit extends SQLiteOpenHelper {
 
     }
 
-    public RegioSpecialiteit geselecteerdeRegio(String landNaam) {
+    public String geselecteerdeRegio(String landNaam) {
+        List<String> list;
+        list= new ArrayList<>();
 
         RegioSpecialiteit geselecteerdLand;
-        String query = "SELECT * FROM " + SPECIALITEIT_TABLE + " WHERE " + COLUMN_SPECIALITEIT_REGIO + " = '" + landNaam + "'";
+        String query = "SELECT DISTINCT " + COLUMN_SPECIALITEIT_NAAM + " FROM " + SPECIALITEIT_TABLE + " WHERE " + COLUMN_SPECIALITEIT_REGIO + " = '" + landNaam + "'";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToFirst()) {
-            String specialiteitNaam = cursor.getString(0);
-            String regioNaam = cursor.getString(1);
-            geselecteerdLand = new RegioSpecialiteit(specialiteitNaam);
+            do {
+                String specialiteitNaam = cursor.getString(0);
+                geselecteerdLand = new RegioSpecialiteit(specialiteitNaam);
+                list.add(geselecteerdLand.getSpecialiteitNaam());
+            } while (cursor.moveToNext());
 
         } else {
-            geselecteerdLand = new RegioSpecialiteit("fout");
+            geselecteerdLand = new RegioSpecialiteit("Geen specialiteit voor "+ landNaam);
+            list.add(geselecteerdLand.getSpecialiteitNaam());
         }
         cursor.close();
         db.close();
-        return geselecteerdLand;
+        return list.toString();
     }
 }

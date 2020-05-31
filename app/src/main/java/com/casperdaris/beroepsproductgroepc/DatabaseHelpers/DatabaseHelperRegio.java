@@ -169,11 +169,8 @@ public class DatabaseHelperRegio extends SQLiteOpenHelper {
             String alarmNummer = cursor.getString(7);
             geselecteerdLand = new Regio(regioNaam, regioBeschrijving, hoofdRegio, hoofdStad, populatie, regioValuta, regioSoort, alarmNummer);
 
-
-
-
         } else {
-            geselecteerdLand = new Regio("fout", null, null, null, null, null, null, null);
+            geselecteerdLand = new Regio("geen regio", "geen beschrijving voor "+ landNaam, "geen hoofdregio voor "+ landNaam, "geen hoofdstad voor "+ landNaam, null, "geen valuta voor "+ landNaam, "geen regiosoort voor "+ landNaam, "geen alarmnummer voor "+ landNaam);
         }
         cursor.close();
         db.close();
