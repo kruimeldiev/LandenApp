@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+       xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.RegioRegioTab"
+    tools:context=".Fragments.RegioStadTab"
     android:orientation="vertical">
-
-    <!-- TODO: Update blank fragment layout -->
+<!-- TODO: Update blank fragment layout -->
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Regio's"
+            android:text="Steden"
             android:textColor="@color/text_color"
             android:layout_gravity="center"
-            android:id="@+id/titelregiolist"
+            android:id="@+id/titelstadlist"
             android:textSize="20dp"
             android:textStyle="bold"/>
 
         <ListView
-            android:id="@+id/landenListRegios"
+            android:id="@+id/landenListSteden"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 

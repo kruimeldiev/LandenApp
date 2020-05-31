@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activities.LandenLijstActivity">
+    tools:context=".Activities.LandenLijstActivity"
+    android:background="@color/White">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/landenLijstToolbar"

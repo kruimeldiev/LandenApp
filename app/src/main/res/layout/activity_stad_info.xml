@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".Activities.StadInfo"
+android:background="@color/White">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:id="@+id/backbutton_stad"
+            android:src="@drawable/ic_arrow_back_black_24dp"
+            android:layout_alignParentLeft="true"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:background="@color/White"
+            android:src="@drawable/ic_help_black_24dp"
+            android:id="@+id/helpbutton_stad"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:id="@+id/naam_stad_gekozenplek"
+        android:textSize="30sp"
+        android:textColor="@color/text_color"
+        android:layout_gravity="center"
+        android:textStyle="bold"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginVertical="20dp">
+
+        <TextView
+            android:layout_width="187dp"
+            android:layout_height="wrap_content"
+            android:text="Bezienswaardigheid:"
+            android:textSize="20dp"
+            android:textColor="@color/text_color"/>
+
+        <TextView
+            android:id="@+id/bezienswaardigheidVanStad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bezienswaardigheid"
+            android:textSize="20dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginVertical="20dp">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Bescrijving:"
+            android:textSize="20dp"
+            android:textColor="@color/text_color"/>
+
+        <TextView
+            android:id="@+id/bescrijvingVanStad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bescrijving"
+            android:textSize="20dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginVertical="20dp">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Regio:"
+            android:textSize="20dp"
+            android:textColor="@color/text_color"/>
+
+        <TextView
+            android:id="@+id/RegioVanStad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Regio"
+            android:textSize="20dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginVertical="20dp">
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Betaling:"
+            android:textSize="20dp"
+            android:textColor="@color/text_color"/>
+
+        <TextView
+            android:id="@+id/betalingVanStad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Betaling"
+            android:textSize="20dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>
+
+</ScrollView>

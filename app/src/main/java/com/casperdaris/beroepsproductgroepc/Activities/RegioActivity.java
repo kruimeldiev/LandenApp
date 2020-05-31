@@ -17,6 +17,7 @@ import com.casperdaris.beroepsproductgroepc.DatabaseHelpers.DatabaseHelperSpecia
 import com.casperdaris.beroepsproductgroepc.DatabaseHelpers.DatabaseHelperSport;
 import com.casperdaris.beroepsproductgroepc.Fragments.RegioInformatieTab;
 import com.casperdaris.beroepsproductgroepc.Fragments.RegioRegioTab;
+import com.casperdaris.beroepsproductgroepc.Fragments.RegioStadTab;
 import com.casperdaris.beroepsproductgroepc.Objecten.Regio;
 import com.casperdaris.beroepsproductgroepc.Objecten.RegioReligie;
 import com.casperdaris.beroepsproductgroepc.Objecten.RegioSpecialiteit;
@@ -64,13 +65,16 @@ public class RegioActivity extends AppCompatActivity {
         RegioAdapter adapter = new RegioAdapter(getSupportFragmentManager());
         RegioInformatieTab regioinfo = new RegioInformatieTab();
         RegioRegioTab regioregio= new RegioRegioTab();
+        RegioStadTab regiostad= new RegioStadTab();
 
         regioregio.setArguments(bundle);
         regioinfo.setArguments(bundle);
+        regiostad.setArguments(bundle);
 
         // Hier maak je nieuwe fragments aan die in de TabLayout komen te staan
         adapter.fragmentToevoegen( regioinfo, "Informatie");
         adapter.fragmentToevoegen( regioregio, "Regio's");
+        adapter.fragmentToevoegen( regiostad, "Steden");
 
         // Hier link je de TabLayout (de tabs waar je op kunt klikken) en de ViewPager (het swipen tussen fragments)
         viewPager.setAdapter(adapter);

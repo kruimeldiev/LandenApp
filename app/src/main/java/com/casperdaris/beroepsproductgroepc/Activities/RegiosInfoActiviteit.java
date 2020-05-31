@@ -91,7 +91,7 @@ public class RegiosInfoActiviteit extends AppCompatActivity {
             public void onClick(View v) {
                 AlertDialog.Builder builder1 = new AlertDialog.Builder(RegiosInfoActiviteit.this);
                 builder1.setTitle("Help");
-                builder1.setMessage("Hier ligt informatie of de gekozen Regio en kan je meer over de gekozen regio.");
+                builder1.setMessage("Hier ligt informatie of de gekozen Regio en kan je meer over de gekozen regio vinden.");
                 builder1.setCancelable(true);
                 AlertDialog alert11 = builder1.create();
                 alert11.show();
