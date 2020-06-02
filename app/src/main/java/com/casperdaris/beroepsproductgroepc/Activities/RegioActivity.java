@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.casperdaris.beroepsproductgroepc.DatabaseHelpers.DatabaseHelper;
 import com.casperdaris.beroepsproductgroepc.DatabaseHelpers.DatabaseHelperRegio;
 import com.casperdaris.beroepsproductgroepc.DatabaseHelpers.DatabaseHelperReligie;
 import com.casperdaris.beroepsproductgroepc.DatabaseHelpers.DatabaseHelperSpecialiteit;
@@ -33,7 +34,7 @@ public class RegioActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
-    private DatabaseHelperRegio databaseHelperRegio;
+    private DatabaseHelper databaseHelperRegio;
 
     private Regio geselecteerdeRegio;
 
@@ -55,7 +56,7 @@ public class RegioActivity extends AppCompatActivity {
 
         if (bundle != null) {
 
-            databaseHelperRegio = new DatabaseHelperRegio(this);
+            databaseHelperRegio = new DatabaseHelper(this);
             geselecteerdeRegio = databaseHelperRegio.geselecteerdeRegioLaden(bundle.getString("gekozenLand"));
             naamVanRegio.setText(geselecteerdeRegio.getRegioNaam());
             beschrijvingVanRegio.setText(geselecteerdeRegio.getBeschrijving());
