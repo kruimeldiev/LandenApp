@@ -1,9 +1,9 @@
-package com.casperdaris.beroepsproductgroepc;
+package com.casperdaris.beroepsproductgroepc.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.casperdaris.beroepsproductgroepc.Objecten.Taal;
+import com.casperdaris.beroepsproductgroepc.R;
 import com.casperdaris.beroepsproductgroepc.viewmodel.FilterViewModel;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
@@ -13,16 +13,12 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.util.Log;
-import android.view.InflateException;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
-import android.widget.CompoundButton;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class FilterActivity extends AppCompatActivity {
@@ -83,6 +79,7 @@ public class FilterActivity extends AppCompatActivity {
             religieList.addAll(selectedReligies);
 
             Intent intent = new Intent(this, LandenLijstActivity.class);
+
             Bundle bundle = new Bundle();
             bundle.putStringArrayList("talen", taalList);
             bundle.putStringArrayList("religie", religieList);

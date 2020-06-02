@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -24,7 +23,6 @@ import com.casperdaris.beroepsproductgroepc.R;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class LandenLijstActivity extends AppCompatActivity {
 

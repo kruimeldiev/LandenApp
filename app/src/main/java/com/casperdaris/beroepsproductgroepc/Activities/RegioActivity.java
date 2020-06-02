@@ -15,8 +15,8 @@ import com.casperdaris.beroepsproductgroepc.DatabaseHelpers.DatabaseHelper;
 import com.casperdaris.beroepsproductgroepc.Fragments.RegioInformatieTab;
 import com.casperdaris.beroepsproductgroepc.Fragments.RegioRegioTab;
 import com.casperdaris.beroepsproductgroepc.Objecten.Regio;
-import com.casperdaris.beroepsproductgroepc.R;
 import com.casperdaris.beroepsproductgroepc.Adapters.RegioAdapter;
+import com.casperdaris.beroepsproductgroepc.R;
 import com.google.android.material.tabs.TabLayout;
 
 public class RegioActivity extends AppCompatActivity {
@@ -49,7 +49,7 @@ public class RegioActivity extends AppCompatActivity {
         if (bundle != null) {
 
             databaseHelper = new DatabaseHelper(this);
-            geselecteerdeRegio = databaseHelper.geselecteerdeRegioLaden(bundle.getString("gekozenLand"));
+            geselecteerdeRegio = databaseHelper.geselecteerdLandLaden(bundle.getString("gekozenLand"));
 
             naamVanRegio.setText(geselecteerdeRegio.getRegioNaam());
             beschrijvingVanRegio.setText(geselecteerdeRegio.getBeschrijving());
