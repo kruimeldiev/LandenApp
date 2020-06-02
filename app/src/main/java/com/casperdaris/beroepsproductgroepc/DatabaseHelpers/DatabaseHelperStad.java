@@ -37,22 +37,4 @@ public class DatabaseHelperStad extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
-
-    public Stad geselecteerdeRegio(String landNaam) {
-        Stad geselecteerdLand;
-        String query = "SELECT * FROM " + STEDEN_TABLE + " WHERE " + COLUMN_STAD_REGIO + " = '" + landNaam + "'";
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(query, null);
-        if (cursor.moveToFirst()) {
-            String stadNaam = cursor.getString(0);
-            String regioNaam = cursor.getString(1);
-            geselecteerdLand = new Stad(stadNaam, regioNaam);
-        } else {
-            geselecteerdLand = new Stad("fout", "fout");
-        }
-        cursor.close();
-        db.close();
-
-        return geselecteerdLand;
-    }
 }

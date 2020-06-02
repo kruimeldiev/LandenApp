@@ -41,26 +41,5 @@ public class DatabaseHelperReligie extends SQLiteOpenHelper {
 
     }
 
-    public String geselecteerdeRegio(String landNaam) {
-        List<String> list;
-        list= new ArrayList<>();
 
-        RegioReligie geselecteerdLand;
-        String query = "SELECT DISTINCT " + COLUMN_RELIGIE_NAAM + " FROM " + RELIGIE_TABLE + " WHERE " + COLUMN_RELIGIE_REGIO + " = '" + landNaam + "'";
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(query, null);
-        if (cursor.moveToFirst()) {
-            do {
-                String religieNaam = cursor.getString(0);
-                geselecteerdLand = new RegioReligie(religieNaam);
-                list.add(geselecteerdLand.getReligieNaam());
-            } while (cursor.moveToNext());
-        } else {
-            geselecteerdLand = new RegioReligie("Geen religie voor "+ landNaam);
-            list.add(geselecteerdLand.getReligieNaam());
-        }
-        cursor.close();
-        db.close();
-        return list.toString();
-    }
 }

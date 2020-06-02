@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.casperdaris.beroepsproductgroepc.DatabaseHelpers.DatabaseHelper;
 import com.casperdaris.beroepsproductgroepc.DatabaseHelpers.DatabaseHelperRegio;
 import com.casperdaris.beroepsproductgroepc.DatabaseHelpers.DatabaseHelperReligie;
 import com.casperdaris.beroepsproductgroepc.DatabaseHelpers.DatabaseHelperSpecialiteit;
@@ -26,7 +27,7 @@ public class RegioInformatieTab extends Fragment {
 
     TextView tvtaal, tvvaluta, tvhoofdstad, tvreligie, tvsport, tvspecialiteit;
     private Regio geselecteerdeRegio;
-    private DatabaseHelperRegio databaseHelperregio;
+    private DatabaseHelper databaseHelperregio;
     private DatabaseHelperReligie databaseHelperReligie;
     private DatabaseHelperSpecialiteit databaseHelperSpecialiteit;
     private String geselecteerdeSportRegio,geselecteerdeTaalRegio, geselecteerdeReligieRegio, geselecteerdeSpecialiteitRegio;
@@ -47,16 +48,16 @@ public class RegioInformatieTab extends Fragment {
         Bundle bundle = this.getArguments();
         if (bundle != null) {
 
-            databaseHelperregio = new DatabaseHelperRegio(getActivity());
+            databaseHelperregio = new DatabaseHelper(getActivity());
             databaseHelperReligie = new DatabaseHelperReligie(getActivity());
             databaseHelperSpecialiteit = new DatabaseHelperSpecialiteit(getActivity());
             databaseHelperSport = new DatabaseHelperSport(getActivity());
             databaseHelperTaal= new DatabaseHelperTaal(getActivity());
             geselecteerdeRegio = databaseHelperregio.geselecteerdeRegioLaden(bundle.getString("gekozenLand"));
-            geselecteerdeReligieRegio = databaseHelperReligie.geselecteerdeRegio(bundle.getString("gekozenLand"));
-            geselecteerdeSpecialiteitRegio = databaseHelperSpecialiteit.geselecteerdeRegio(bundle.getString("gekozenLand"));
-            geselecteerdeSportRegio = databaseHelperSport.geselecteerdeRegio(bundle.getString("gekozenLand"));
-            geselecteerdeTaalRegio = databaseHelperTaal.geselecteerdeRegio(bundle.getString("gekozenLand"));
+            geselecteerdeReligieRegio = databaseHelperregio.geselecteerdeRegioReligie(bundle.getString("gekozenLand"));
+            geselecteerdeSpecialiteitRegio = databaseHelperregio.geselecteerdeRegioSpecialiteit(bundle.getString("gekozenLand"));
+            geselecteerdeSportRegio = databaseHelperregio.geselecteerdeRegioSport(bundle.getString("gekozenLand"));
+            geselecteerdeTaalRegio = databaseHelperregio.geselecteerdeRegioTaal(bundle.getString("gekozenLand"));
 
 
 

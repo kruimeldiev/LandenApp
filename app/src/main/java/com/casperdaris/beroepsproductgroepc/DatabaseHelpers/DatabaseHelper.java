@@ -9,7 +9,13 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import com.casperdaris.beroepsproductgroepc.Objecten.Bezienswaardigheid;
 import com.casperdaris.beroepsproductgroepc.Objecten.Regio;
+import com.casperdaris.beroepsproductgroepc.Objecten.RegioReligie;
+import com.casperdaris.beroepsproductgroepc.Objecten.RegioSpecialiteit;
+import com.casperdaris.beroepsproductgroepc.Objecten.RegioSport;
+import com.casperdaris.beroepsproductgroepc.Objecten.RegioTaal;
+import com.casperdaris.beroepsproductgroepc.Objecten.Stad;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +57,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_SPECIALITEIT_REGIO = "SPECIALITEIT_REGIO";
 
     private static final String STEDEN_TABLE = "STAD_TABLE";
+    private static final String STEDEN_KOPPEL_TABLE = "STAD_KOPPEL_TABLE";
     private static final String COLUMN_STAD_NAAM = "STAD_NAAM";
+    private static final String COLUMN_STAD_REGIO = "STAD_REGIO";
 
     private static final String TAAL_TABLE = "TAAL_TABLE";
     private static final String TAAL_KOPPEL_TABLE = "TAAL_KOPPEL_TABLE";
@@ -64,7 +72,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String SOORT_TABLE = "SOORT_TABLE";
 
     public DatabaseHelper(@Nullable Context context) {
-        super(context, "regioDatabase", null, 1);
+        super(context, "REGIODATABASE", null, 1);
     }
 
     @Override
@@ -77,31 +85,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String bezienswaardigheidTableMakenStatement = "CREATE TABLE " + BEZIENSWAARDIGHEID_TABLE + " (" + COLUMN_BEZ_NAAM + " TEXT PRIMARY KEY, " + COLUMN_BEZ_BESCH + " TEXT, " + COLUMN_BEZ_REGIO + " TEXT, " + COLUMN_BEZ_STAD + " TEXT, " + COLUMN_BEZ_BETALING + " TEXT, FOREIGN KEY (" + COLUMN_BEZ_REGIO + ") REFERENCES REGIO_TABLE(REGIO_NAAM));";
         db.execSQL(bezienswaardigheidTableMakenStatement);
 
-        String religieTableMakenStatement = "CREATE TABLE " + RELIGIE_TABLE + " (" + COLUMN_RELIGIE_NAAM + " TEXT PRIMARY KEY);";
+        String religieTableMakenStatement = "CREATE TABLE " + RELIGIE_TABLE + " (" + COLUMN_RELIGIE_NAAM + " TEXT PRIMARY KEY)";
         db.execSQL(religieTableMakenStatement);
 
-        String religieKoppelTableMakenStatement = "CREATE TABLE " + RELIGIE_KOPPEL_TABLE + " (" + COLUMN_RELIGIE_NAAM + " TEXT, " + COLUMN_RELIGIE_REGIO + " TEXT, " + COLUMN_RELIGIE_PERCENTAGE + " REAL, FOREIGN KEY (" + COLUMN_RELIGIE_REGIO + ") REFERENCES REGIO_TABLE(REGIO_NAAM), FOREIGN KEY (" + COLUMN_RELIGIE_NAAM + ") REFERENCES RELIGIE_TABLE(RELIGIE_NAAM));";
+        String religieKoppelTableMakenStatement = "CREATE TABLE " + RELIGIE_KOPPEL_TABLE + " (" + COLUMN_RELIGIE_NAAM + " TEXT PRIMARY KEY, " + COLUMN_RELIGIE_REGIO + " TEXT, " + COLUMN_RELIGIE_PERCENTAGE + " REAL, FOREIGN KEY (" + COLUMN_RELIGIE_REGIO + ") REFERENCES REGIO_TABLE(REGIO_NAAM), FOREIGN KEY (" + COLUMN_RELIGIE_NAAM + ") REFERENCES RELIGIE_TABLE(RELIGIE_NAAM));";
         db.execSQL(religieKoppelTableMakenStatement);
 
         String sportTableMakenStatement = "CREATE TABLE " + SPORT_TABLE + " (" + COLUMN_SPORT_NAAM + " TEXT PRIMARY KEY);";
         db.execSQL(sportTableMakenStatement);
 
-        String sportKoppelTableMakenStatement = "CREATE TABLE " + SPORT_KOPPEL_TABLE + " (" + COLUMN_SPORT_NAAM + " TEXT, " + COLUMN_SPORT_REGIO + " TEXT, FOREIGN KEY (" + COLUMN_SPORT_REGIO + ") REFERENCES REGIO_TABLE(REGIO_NAAM), FOREIGN KEY (" + COLUMN_SPORT_NAAM + ") REFERENCES SPORT_TABLE(SPORT_NAAM));";
+        String sportKoppelTableMakenStatement = "CREATE TABLE " + SPORT_KOPPEL_TABLE + " (" + COLUMN_SPORT_NAAM + " TEXT PRIMARY KEY, " + COLUMN_SPORT_REGIO + " TEXT, FOREIGN KEY (" + COLUMN_SPORT_REGIO + ") REFERENCES REGIO_TABLE(REGIO_NAAM), FOREIGN KEY (" + COLUMN_SPORT_NAAM + ") REFERENCES SPORT_TABLE(SPORT_NAAM));";
         db.execSQL(sportKoppelTableMakenStatement);
 
         String specialiteitTableMakenStatement = "CREATE TABLE " + SPECIALITEIT_TABLE + " (" + COLUMN_SPECIALITEIT_NAAM + "TEXT PRIMARY KEY);";
         db.execSQL(specialiteitTableMakenStatement);
 
-        String specialiteitKoppelTableMakenStatement = "CREATE TABLE " + SPECIALITEIT_KOPPEL_TABLE + " (" + COLUMN_SPECIALITEIT_NAAM + " TEXT, " + COLUMN_SPECIALITEIT_REGIO + " TEXT, FOREIGN KEY (" + COLUMN_SPECIALITEIT_REGIO + ") REFERENCES REGIO_TABLE(REGIO_NAAM), FOREIGN KEY (" + COLUMN_SPECIALITEIT_NAAM + ") REFERENCES SPECIALITEIT_TABLE(SPECIALITEIT_NAAM));";
+        String specialiteitKoppelTableMakenStatement = "CREATE TABLE " + SPECIALITEIT_KOPPEL_TABLE + " (" + COLUMN_SPECIALITEIT_NAAM + " TEXT PRIMARY KEY, " + COLUMN_SPECIALITEIT_REGIO + " TEXT, FOREIGN KEY (" + COLUMN_SPECIALITEIT_REGIO + ") REFERENCES REGIO_TABLE(REGIO_NAAM), FOREIGN KEY (" + COLUMN_SPECIALITEIT_NAAM + ") REFERENCES SPECIALITEIT_TABLE(SPECIALITEIT_NAAM));";
         db.execSQL(specialiteitKoppelTableMakenStatement);
 
         String stedenTableMakenStatement = "CREATE TABLE " + STEDEN_TABLE + " (" + COLUMN_STAD_NAAM + " TEXT);";
         db.execSQL(stedenTableMakenStatement);
 
+        String stedenkoppelTableMakenStatement = "CREATE TABLE " + STEDEN_KOPPEL_TABLE + " (" + COLUMN_STAD_NAAM + " TEXT PRIMARY KEY, " + COLUMN_STAD_REGIO + " TEXT, FOREIGN KEY (" + COLUMN_STAD_REGIO + ") REFERENCES REGIO_TABLE(REGIO_NAAM), FOREIGN KEY (" + COLUMN_STAD_NAAM + ") REFERENCES STAD_TABLE(STAD_NAAM));";
+        db.execSQL(stedenkoppelTableMakenStatement);
+
         String taalTableMakenStatement = "CREATE TABLE " + TAAL_TABLE + " (" + COLUMN_TAAL_NAAM + " TEXT);";
         db.execSQL(taalTableMakenStatement);
 
-        String taalKoppelTableMakenStatement = "CREATE TABLE " + TAAL_KOPPEL_TABLE + " (" + COLUMN_TAAL_NAAM + " TEXT, " + COLUMN_TAAL_REGIO + " TEXT, " + COLUMN_TAAL_PERCENTAGE + " REAL, FOREIGN KEY (" + COLUMN_TAAL_REGIO + ") REFERENCES REGIO_TABLE(REGIO_NAAM), FOREIGN KEY (" + COLUMN_TAAL_NAAM + ") REFERENCES TAAL_TABLE(TAAL_NAAM));";
+        String taalKoppelTableMakenStatement = "CREATE TABLE " + TAAL_KOPPEL_TABLE + " (" + COLUMN_TAAL_NAAM + " TEXT PRIMARY KEY, " + COLUMN_TAAL_REGIO + " TEXT, " + COLUMN_TAAL_PERCENTAGE + " REAL, FOREIGN KEY (" + COLUMN_TAAL_REGIO + ") REFERENCES REGIO_TABLE(REGIO_NAAM), FOREIGN KEY (" + COLUMN_TAAL_NAAM + ") REFERENCES TAAL_TABLE(TAAL_NAAM));";
         db.execSQL(taalKoppelTableMakenStatement);
 
         String valutaTableMakenStatement = "CREATE TABLE " + VALUTA_TABLE + " (" + COLUMN_REGIO_VALUTA + " TEXT PRIMARY KEY);";
@@ -148,6 +159,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO " + STEDEN_TABLE + " VALUES ('Londen')");
         db.execSQL("INSERT INTO " + STEDEN_TABLE + " VALUES ('Parijs')");
         db.execSQL("INSERT INTO " + STEDEN_TABLE + " VALUES ('Madrid')");
+
+        db.execSQL("INSERT INTO " + STEDEN_KOPPEL_TABLE + " VALUES ('Utrecht', 'Nederland')");
+        db.execSQL("INSERT INTO " + STEDEN_KOPPEL_TABLE + " VALUES ('Amsterdam', 'Nederland')");
 
         db.execSQL("INSERT INTO " + TAAL_KOPPEL_TABLE + " VALUES ('Nederlands', 'Nederland', 95.00)");
         db.execSQL("INSERT INTO " + TAAL_KOPPEL_TABLE + " VALUES ('Engels', 'Nederland', 75.00)");
@@ -257,6 +271,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return  returnList;
     }
 
+    public List<String> geselecteerdeRegioRegios(String landNaam) {
+
+        List<String> returnList = new ArrayList<>();
+        String query = "SELECT * FROM " + REGIO_TABLE + " WHERE " + COLUMN_HOOFD_REGIO + " = '" + landNaam + "'";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            do {
+                String regioNaam = cursor.getString(0);
+                String regioBeschrijving = cursor.getString(1);
+                String hoofdRegio = cursor.getString(2);
+                String hoofdStad = cursor.getString(3);
+                Integer populatie = cursor.getInt(4);
+                String regioValuta = cursor.getString(5);
+                String regioSoort = cursor.getString(6);
+                String alarmNummer = cursor.getString(7);
+                Regio geselecteereStad = new Regio(regioNaam, regioBeschrijving, hoofdRegio, hoofdStad, populatie, regioValuta, regioSoort, alarmNummer);
+                returnList.add(geselecteereStad.getRegioNaam());
+            } while (cursor.moveToNext());
+        } else {
+
+        }
+        cursor.close();
+        db.close();
+        return  returnList;
+
+    }
     public Regio geselecteerdeRegioLaden(String landNaam) {
 
         Regio geselecteerdLand;
@@ -273,11 +314,149 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             String regioSoort = cursor.getString(6);
             String alarmNummer = cursor.getString(7);
             geselecteerdLand = new Regio(regioNaam, regioBeschrijving, hoofdRegio, hoofdStad, populatie, regioValuta, regioSoort, alarmNummer);
+
         } else {
-            geselecteerdLand = new Regio("fout", null, null, null, null, null, null, null);
+            geselecteerdLand = new Regio("geen regio", "geen beschrijving voor "+ landNaam, "geen hoofdregio voor "+ landNaam, "geen hoofdstad voor "+ landNaam, null, "geen valuta voor "+ landNaam, "geen regiosoort voor "+ landNaam, "geen alarmnummer voor "+ landNaam);
         }
         cursor.close();
         db.close();
         return geselecteerdLand;
+    }
+
+    public String geselecteerdeRegioReligie(String landNaam) {
+        List<String> list;
+        list= new ArrayList<>();
+
+        RegioReligie geselecteerdLand;
+        String query = "SELECT DISTINCT " + COLUMN_RELIGIE_NAAM + " FROM " + RELIGIE_KOPPEL_TABLE + " WHERE " + COLUMN_RELIGIE_REGIO + " = '" + landNaam + "'";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            do {
+                String religieNaam = cursor.getString(0);
+                geselecteerdLand = new RegioReligie(religieNaam);
+                list.add(geselecteerdLand.getReligieNaam());
+            } while (cursor.moveToNext());
+        } else {
+            geselecteerdLand = new RegioReligie("Geen religie voor "+ landNaam);
+            list.add(geselecteerdLand.getReligieNaam());
+        }
+        cursor.close();
+        db.close();
+        return list.toString();
+    }
+
+    public String geselecteerdeRegioSpecialiteit(String landNaam) {
+        List<String> list;
+        list= new ArrayList<>();
+
+        RegioSpecialiteit geselecteerdLand;
+        String query = "SELECT DISTINCT " + COLUMN_SPECIALITEIT_NAAM + " FROM " + SPECIALITEIT_KOPPEL_TABLE + " WHERE " + COLUMN_SPECIALITEIT_REGIO + " = '" + landNaam + "'";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            do {
+                String specialiteitNaam = cursor.getString(0);
+                geselecteerdLand = new RegioSpecialiteit(specialiteitNaam);
+                list.add(geselecteerdLand.getSpecialiteitNaam());
+            } while (cursor.moveToNext());
+
+        } else {
+            geselecteerdLand = new RegioSpecialiteit("Geen specialiteit voor "+ landNaam);
+            list.add(geselecteerdLand.getSpecialiteitNaam());
+        }
+        cursor.close();
+        db.close();
+        return list.toString();
+    }
+
+    public String geselecteerdeRegioSport(String landNaam) {
+        List<String> list;
+        list= new ArrayList<>();
+        RegioSport geselecteerdLand;
+        String query = "SELECT DISTINCT " + COLUMN_SPORT_NAAM + " FROM " + SPORT_KOPPEL_TABLE + " WHERE " + COLUMN_SPORT_REGIO + " = '" + landNaam + "'";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            do {
+                String sportNaam = cursor.getString(0);
+                geselecteerdLand = new RegioSport(sportNaam);
+                list.add(geselecteerdLand.getSportNaam());
+            } while (cursor.moveToNext());
+        } else {
+            geselecteerdLand = new RegioSport("Geen sport voor "+ landNaam);
+            list.add(geselecteerdLand.getSportNaam());
+        }
+        cursor.close();
+        db.close();
+
+        return list.toString();
+    }
+
+    public String geselecteerdeRegioTaal(String landNaam) {
+        List<String> list;
+        list= new ArrayList<>();
+
+        RegioTaal geselecteerdLand;
+       String query = "SELECT DISTINCT " + COLUMN_TAAL_NAAM + " FROM " + TAAL_KOPPEL_TABLE + " WHERE " + COLUMN_TAAL_REGIO + " = '" + landNaam + "'";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            do {
+                String taalNaam = cursor.getString(0);
+                geselecteerdLand = new RegioTaal(taalNaam);
+                list.add(geselecteerdLand.getTaalNaam());
+            } while (cursor.moveToNext());
+
+        } else {
+            geselecteerdLand = new RegioTaal("Geen taal voor "+ landNaam);
+            list.add(geselecteerdLand.getTaalNaam());
+        }
+        cursor.close();
+        db.close();
+        return list.toString();
+    }
+
+    public Bezienswaardigheid geselecteerdeStadBezienswaardigheid(String landNaam) {
+
+        Bezienswaardigheid geselecteerdLand;
+        String query = "SELECT * FROM " + BEZIENSWAARDIGHEID_TABLE + " WHERE " + COLUMN_BEZ_STAD + " = '" + landNaam + "'";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            String bezienswaardigheidNaam = cursor.getString(0);
+            String beschrijving = cursor.getString(1);
+            String regio = cursor.getString(2);
+            String stad = cursor.getString(3);
+            String betaling = cursor.getString(4);
+            geselecteerdLand = new Bezienswaardigheid(bezienswaardigheidNaam, beschrijving, regio, stad, betaling);
+
+        } else {
+            geselecteerdLand = new Bezienswaardigheid( "Geen bezienswaardigheid voor "+ landNaam, "Geen beschrijving voor "+ landNaam, "Geen regio voor "+ landNaam, "Geen stad voor "+ landNaam, "Geen betaling voor "+ landNaam);
+        }
+        cursor.close();
+        db.close();
+        return geselecteerdLand;
+    }
+
+    public List<String> geselecteerdeRegioStad(String landNaam) {
+
+        List<String> returnList = new ArrayList<>();
+        String query = "SELECT * FROM " + STEDEN_KOPPEL_TABLE + " WHERE " + COLUMN_STAD_REGIO + " = '" + landNaam + "'";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            do {
+                String stadNaam = cursor.getString(0);
+                String regioNaam = cursor.getString(1);
+                Stad geselecteereStad = new Stad(stadNaam, regioNaam);
+                returnList.add(geselecteereStad.getStadNaam());
+            } while (cursor.moveToNext());
+        } else {
+
+        }
+        cursor.close();
+        db.close();
+        return  returnList;
     }
 }

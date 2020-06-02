@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.casperdaris.beroepsproductgroepc.Activities.LandenLijstActivity;
 import com.casperdaris.beroepsproductgroepc.Activities.RegioActivity;
 import com.casperdaris.beroepsproductgroepc.Activities.RegiosInfoActiviteit;
+import com.casperdaris.beroepsproductgroepc.DatabaseHelpers.DatabaseHelper;
 import com.casperdaris.beroepsproductgroepc.DatabaseHelpers.DatabaseHelperRegio;
 import com.casperdaris.beroepsproductgroepc.Objecten.Regio;
 import com.casperdaris.beroepsproductgroepc.R;
@@ -31,8 +32,7 @@ public class RegioRegioTab extends Fragment {
 
     View v;
     private List<String> list;
-    private Regio geselecteerdeRegio;
-    private DatabaseHelperRegio databaseHelper;
+    private DatabaseHelper databaseHelper;
     private TextView textView;
 
 
@@ -47,20 +47,16 @@ public class RegioRegioTab extends Fragment {
         v=inflater.inflate(R.layout.fragment_regio_tab, container, false);
         Bundle bundle = this.getArguments();
 
-        // Inflate the layout for this fragment
-        if (bundle != null) {
+        ListView listView= (ListView) v.findViewById(R.id.landenListRegios);
+            databaseHelper = new DatabaseHelper(getActivity());
 
-            databaseHelper = new DatabaseHelperRegio(getActivity());
-            geselecteerdeRegio = databaseHelper.geselecteerdeRegioRegios(bundle.getString("gekozenLand"));
-
-            ListView listView= (ListView) v.findViewById(R.id.landenListRegios);
 
             list= new ArrayList<>();
-            if(geselecteerdeRegio.getRegioNaam()!= "fout"){
-                list.add(geselecteerdeRegio.getRegioNaam());
+        if(bundle != null){
+            list = databaseHelper.geselecteerdeRegioRegios(bundle.getString("gekozenLand"));
             }else{
                 textView= v.findViewById(R.id.titelregiolist);
-                textView.setText("Geen Regios voor deze land beschikbaar");
+                textView.setText("Fout by regios");
             }
 
             ArrayAdapter <String> ListViewAdapter= new ArrayAdapter<String>(
@@ -81,7 +77,6 @@ public class RegioRegioTab extends Fragment {
                 }
             });
 
-        }
 
         return v;
     }

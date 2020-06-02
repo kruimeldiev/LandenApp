@@ -38,25 +38,4 @@ public class DatabaseHelperBezienswaardigheid extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
-    public Bezienswaardigheid geselecteerdeStadLaden(String landNaam) {
-
-        Bezienswaardigheid geselecteerdLand;
-        String query = "SELECT * FROM " + BEZIENSWAARDIGHEID_TABLE + " WHERE " + COLUMN_BEZ_STAD + " = '" + landNaam + "'";
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(query, null);
-        if (cursor.moveToFirst()) {
-            String bezienswaardigheidNaam = cursor.getString(0);
-            String beschrijving = cursor.getString(1);
-            String regio = cursor.getString(2);
-            String stad = cursor.getString(3);
-            String betaling = cursor.getString(4);
-            geselecteerdLand = new Bezienswaardigheid(bezienswaardigheidNaam, beschrijving, regio, stad, betaling);
-
-        } else {
-            geselecteerdLand = new Bezienswaardigheid("fout", "fout", "fout", "fout", "fout");
-        }
-        cursor.close();
-        db.close();
-        return geselecteerdLand;
-    }
 }

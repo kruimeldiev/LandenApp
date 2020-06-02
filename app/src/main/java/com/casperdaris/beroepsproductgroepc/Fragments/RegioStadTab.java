@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.casperdaris.beroepsproductgroepc.Activities.RegiosInfoActiviteit;
 import com.casperdaris.beroepsproductgroepc.Activities.StadInfo;
+import com.casperdaris.beroepsproductgroepc.DatabaseHelpers.DatabaseHelper;
 import com.casperdaris.beroepsproductgroepc.DatabaseHelpers.DatabaseHelperRegio;
 import com.casperdaris.beroepsproductgroepc.DatabaseHelpers.DatabaseHelperStad;
 import com.casperdaris.beroepsproductgroepc.Objecten.Regio;
@@ -28,8 +29,7 @@ public class RegioStadTab extends Fragment {
 
     View v;
     private List<String> list;
-    private Stad  geselecteerdeRegio;
-    private DatabaseHelperStad databaseHelper;
+    private DatabaseHelper databaseHelper;
     private TextView textView;
 
 
@@ -46,22 +46,20 @@ public class RegioStadTab extends Fragment {
         v=inflater.inflate(R.layout.fragment_regio_stad_tab, container, false);
         Bundle bundle = this.getArguments();
 
-        // Inflate the layout for this fragment
-        if (bundle != null) {
-
-            databaseHelper = new DatabaseHelperStad(getActivity());
-            geselecteerdeRegio = databaseHelper.geselecteerdeRegio(bundle.getString("gekozenLand"));
+            databaseHelper = new DatabaseHelper(getActivity());
 
             ListView listView= (ListView) v.findViewById(R.id.landenListSteden);
 
             list= new ArrayList<>();
-            if(geselecteerdeRegio.getStadNaam()!= "fout"){
-                list.add(geselecteerdeRegio.getStadNaam());
+            if(bundle != null){
+                list = databaseHelper.geselecteerdeRegioStad(bundle.getString("gekozenLand"));
+
             }else{
                 textView= v.findViewById(R.id.titelstadlist);
-                textView.setText("Geen Steden voor deze land beschikbaar");
+                textView.setText("Fout by steden");
             }
 
+            // ArrayAdapter aanmaken en deze adapter vervolgens gebruiken om de ListView mee te vullen
             ArrayAdapter<String> ListViewAdapter= new ArrayAdapter<String>(
                     getActivity(),android.R.layout.simple_list_item_1, list
             );
@@ -79,8 +77,6 @@ public class RegioStadTab extends Fragment {
 
                 }
             });
-
-        }
 
         return v;
     }

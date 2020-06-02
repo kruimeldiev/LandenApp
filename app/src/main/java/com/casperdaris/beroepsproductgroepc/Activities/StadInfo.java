@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.casperdaris.beroepsproductgroepc.DataBaseHelper;
+import com.casperdaris.beroepsproductgroepc.DatabaseHelpers.DatabaseHelper;
 import com.casperdaris.beroepsproductgroepc.DatabaseHelpers.DatabaseHelperBezienswaardigheid;
 import com.casperdaris.beroepsproductgroepc.DatabaseHelpers.DatabaseHelperRegio;
 import com.casperdaris.beroepsproductgroepc.DatabaseHelpers.DatabaseHelperReligie;
@@ -25,7 +27,7 @@ public class StadInfo extends AppCompatActivity {
     private TextView naam;
     TextView tvbetaling, tvbezienswaardigheid, tvbeschrijving, tvregio;
     private Bezienswaardigheid geselecteerdeStad;
-    private DatabaseHelperBezienswaardigheid databaseHelperBezienswaardigheid;
+    private DatabaseHelper databaseHelper;
 
 
     @Override
@@ -42,8 +44,8 @@ public class StadInfo extends AppCompatActivity {
             if (bundle != null) {
 
 
-                databaseHelperBezienswaardigheid = new DatabaseHelperBezienswaardigheid(this);
-                geselecteerdeStad = databaseHelperBezienswaardigheid.geselecteerdeStadLaden(bundle.getString("landNaam"));
+                databaseHelper = new DatabaseHelper(this);
+                geselecteerdeStad = databaseHelper.geselecteerdeStadBezienswaardigheid(bundle.getString("landNaam"));
 
                 tvbezienswaardigheid= (TextView) findViewById(R.id.bezienswaardigheidVanStad);
                 tvbezienswaardigheid.setText(geselecteerdeStad.getBezienswaardigheidNaam());

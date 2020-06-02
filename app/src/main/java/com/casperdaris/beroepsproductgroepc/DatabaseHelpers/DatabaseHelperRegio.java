@@ -176,48 +176,4 @@ public class DatabaseHelperRegio extends SQLiteOpenHelper {
         db.close();
         return geselecteerdLand;
     }
-
-    public Regio geselecteerdeRegioRegios(String landNaam) {
-
-        Regio geselecteerdeRegioRegios;
-        String queryregio = "SELECT * FROM " + REGIO_TABLE + " WHERE " + COLUMN_HOOFD_REGIO + " = '" + landNaam + "'";
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(queryregio, null);
-        if (cursor.moveToFirst()) {
-            String regioNaam = cursor.getString(0);
-            String regioBeschrijving = cursor.getString(1);
-            String hoofdRegio = cursor.getString(2);
-            String hoofdStad = cursor.getString(3);
-            Integer populatie = cursor.getInt(4);
-            String regioValuta = cursor.getString(5);
-            String regioSoort = cursor.getString(6);
-            String alarmNummer = cursor.getString(7);
-            geselecteerdeRegioRegios = new Regio(regioNaam, regioBeschrijving, hoofdRegio, hoofdStad, populatie, regioValuta, regioSoort, alarmNummer);
-        } else {
-            geselecteerdeRegioRegios = new Regio("fout", null, null, null, null, null, null, null);
-        }
-        cursor.close();
-        db.close();
-        return geselecteerdeRegioRegios;
-    }
-
-    public RegioReligie geselecteerdeRegioReligie(String landNaam) {
-
-        RegioReligie geselecteerdLand;
-        String query = "SELECT * FROM " + RELIGIE_TABLE + " WHERE " + COLUMN_RELIGIE_REGIO + " = '" + landNaam + "'";
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(query, null);
-        if (cursor.moveToFirst()) {
-            String religieNaam = cursor.getString(0);
-            String regioNaam = cursor.getString(1);
-            Integer percentage = cursor.getInt(2);
-            geselecteerdLand = new RegioReligie(religieNaam);
-
-        } else {
-            geselecteerdLand = new RegioReligie("fout");
-        }
-        cursor.close();
-        db.close();
-        return geselecteerdLand;
-    }
 }

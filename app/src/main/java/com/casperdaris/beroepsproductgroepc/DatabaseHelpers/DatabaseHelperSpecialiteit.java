@@ -37,28 +37,4 @@ public class DatabaseHelperSpecialiteit extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
-
-    public String geselecteerdeRegio(String landNaam) {
-        List<String> list;
-        list= new ArrayList<>();
-
-        RegioSpecialiteit geselecteerdLand;
-        String query = "SELECT DISTINCT " + COLUMN_SPECIALITEIT_NAAM + " FROM " + SPECIALITEIT_TABLE + " WHERE " + COLUMN_SPECIALITEIT_REGIO + " = '" + landNaam + "'";
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(query, null);
-        if (cursor.moveToFirst()) {
-            do {
-                String specialiteitNaam = cursor.getString(0);
-                geselecteerdLand = new RegioSpecialiteit(specialiteitNaam);
-                list.add(geselecteerdLand.getSpecialiteitNaam());
-            } while (cursor.moveToNext());
-
-        } else {
-            geselecteerdLand = new RegioSpecialiteit("Geen specialiteit voor "+ landNaam);
-            list.add(geselecteerdLand.getSpecialiteitNaam());
-        }
-        cursor.close();
-        db.close();
-        return list.toString();
-    }
 }
