@@ -135,6 +135,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO " + RELIGIE_KOPPEL_TABLE + " VALUES ('Rooms-katholiek', 'Nederland', 24.00)");
         db.execSQL("INSERT INTO " + RELIGIE_KOPPEL_TABLE + " VALUES ('Protestants', 'Nederland', 15.00)");
         db.execSQL("INSERT INTO " + RELIGIE_KOPPEL_TABLE + " VALUES ('Islamitisch', 'Nederland', 5.00)");
+        db.execSQL("INSERT INTO " + RELIGIE_KOPPEL_TABLE + " VALUES ('Joods', 'België', 92.0 )");
+        db.execSQL("INSERT INTO " + RELIGIE_KOPPEL_TABLE + " VALUES ('Rooms-katholiek', 'Duitsland', 24.00)");
 
         db.execSQL("INSERT INTO " + SPORT_TABLE + " VALUES ('Schaatsen'), ('Voetbal'), ('Atletiek')");
 
@@ -152,8 +154,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO " + STEDEN_TABLE + " VALUES ('Parijs')");
         db.execSQL("INSERT INTO " + STEDEN_TABLE + " VALUES ('Madrid')");
 
+        db.execSQL("INSERT INTO " + TAAL_TABLE + " VALUES ('Engels')");
+        db.execSQL("INSERT INTO " + TAAL_TABLE + " VALUES ('Nederlands')");
+        db.execSQL("INSERT INTO " + TAAL_TABLE + " VALUES ('Duits')");
+
         db.execSQL("INSERT INTO " + TAAL_KOPPEL_TABLE + " VALUES ('Nederlands', 'Nederland', 95.00)");
         db.execSQL("INSERT INTO " + TAAL_KOPPEL_TABLE + " VALUES ('Engels', 'Nederland', 75.00)");
+        db.execSQL("INSERT INTO " + TAAL_KOPPEL_TABLE + " VALUES ('Duits', 'Duitsland', 92.0 )");
+        db.execSQL("INSERT INTO " + TAAL_KOPPEL_TABLE + " VALUES ('Engels', 'Duitsland', 75.00)");
+        db.execSQL("INSERT INTO " + TAAL_KOPPEL_TABLE + " VALUES ('Nederlands', 'België', 95.00)");
 
     }
 
@@ -340,10 +349,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String[] selectionArgs = parametersList.toArray(new String[0]);
 
         String query = "SELECT DISTINCT " + REGIO_TABLE + "." + COLUMN_REGIO_NAAM + " FROM " + REGIO_TABLE +
-                " LEFT JOIN " + TAAL_TABLE + " ON (" + REGIO_TABLE + "." + COLUMN_REGIO_NAAM + " = " + TAAL_TABLE + "." + COLUMN_TAAL_REGIO + ")" +
-                " LEFT JOIN " + RELIGIE_TABLE + " ON (" + REGIO_TABLE + "." + COLUMN_REGIO_NAAM + " = " + RELIGIE_TABLE + "." + COLUMN_RELIGIE_REGIO + ")" +
-                " WHERE (" + TAAL_TABLE + "." + COLUMN_TAAL_NAAM + " IN (" + makePlaceHolders(talen.size()) + ")" +
-                " OR " + RELIGIE_TABLE + "." + COLUMN_RELIGIE_NAAM + " IN (" + makePlaceHolders(religie.size()) + "))" +
+                " LEFT JOIN " + TAAL_KOPPEL_TABLE + " ON (" + REGIO_TABLE + "." + COLUMN_REGIO_NAAM + " = " + TAAL_KOPPEL_TABLE + "." + COLUMN_TAAL_REGIO + ")" +
+                " LEFT JOIN " + RELIGIE_KOPPEL_TABLE + " ON (" + REGIO_TABLE + "." + COLUMN_REGIO_NAAM + " = " + RELIGIE_KOPPEL_TABLE + "." + COLUMN_RELIGIE_REGIO + ")" +
+                " WHERE (" + TAAL_KOPPEL_TABLE + "." + COLUMN_TAAL_NAAM + " IN (" + makePlaceHolders(talen.size()) + ")" +
+                " OR " + RELIGIE_KOPPEL_TABLE + "." + COLUMN_RELIGIE_NAAM + " IN (" + makePlaceHolders(religie.size()) + "))" +
                 " AND " + REGIO_TABLE + "." + COLUMN_REGIO_SOORT + " = 'Land'";
 
         try (SQLiteDatabase db = getWritableDatabase(); Cursor cursor = db.rawQuery(query, selectionArgs)) {
