@@ -2,13 +2,10 @@ package com.casperdaris.beroepsproductgroepc.Objecten;
 
 public class RegioSpecialiteit {
 
-    private String specialiteitNaam, specialiteitSoort;
-    private Regio regioNaam;
+    private String specialiteitNaam;
 
-    public RegioSpecialiteit(String specialiteitNaam, String specialiteitSoort, Regio regioNaam) {
+    public RegioSpecialiteit(String specialiteitNaam) {
         this.specialiteitNaam = specialiteitNaam;
-        this.specialiteitSoort = specialiteitSoort;
-        this.regioNaam = regioNaam;
     }
 
     public String getSpecialiteitNaam() {
@@ -17,21 +14,5 @@ public class RegioSpecialiteit {
 
     public void setSpecialiteitNaam(String specialiteitNaam) {
         this.specialiteitNaam = specialiteitNaam;
-    }
-
-    public String getSpecialiteitSoort() {
-        return specialiteitSoort;
-    }
-
-    public void setSpecialiteitSoort(String specialiteitSoort) {
-        this.specialiteitSoort = specialiteitSoort;
-    }
-
-    public Regio getRegioNaam() {
-        return regioNaam;
-    }
-
-    public void setRegioNaam(Regio regioNaam) {
-        this.regioNaam = regioNaam;
     }
 }

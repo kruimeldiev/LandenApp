@@ -9,11 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MapsActivity"/>
-        <activity android:name=".FiltersvoorZoeken"/>
-        <activity android:name=".LandenLijstActivity"/>
-        <activity android:name=".RegioActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activities.MapsActivity"/>
+        <activity android:name=".Activities.FiltersvoorZoeken"/>
+        <activity android:name=".Activities.LandenLijstActivity"/>
+        <activity android:name=".Activities.RegioActivity" />
+        <activity android:name=".Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
