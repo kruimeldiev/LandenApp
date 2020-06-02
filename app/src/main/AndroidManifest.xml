@@ -9,11 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.MapsActivity"/>
-        <activity android:name=".Activities.FiltersvoorZoeken"/>
-        <activity android:name=".Activities.LandenLijstActivity"/>
-        <activity android:name=".Activities.RegioActivity" />
-        <activity android:name=".Activities.MainActivity">
+        <activity
+            android:name=".FilterActivity"
+            android:parentActivityName=".LandenLijstActivity"
+            android:theme="@style/FilterTheme"
+            android:label="@string/filters"/>
+        <activity android:name=".MapsActivity" />
+        <activity android:name=".LandenLijstActivity" />
+        <activity android:name=".RegioActivity" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,7 +28,6 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />

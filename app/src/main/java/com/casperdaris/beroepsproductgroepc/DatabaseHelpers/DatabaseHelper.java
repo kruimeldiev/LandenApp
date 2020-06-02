@@ -1,4 +1,4 @@
-package com.casperdaris.beroepsproductgroepc.DatabaseHelpers;
+package com.casperdaris.beroepsproductgroepc;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,10 +6,13 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
 import com.casperdaris.beroepsproductgroepc.Objecten.Regio;
+import com.casperdaris.beroepsproductgroepc.Objecten.Religie;
+import com.casperdaris.beroepsproductgroepc.Objecten.Taal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,51 +20,44 @@ import java.util.List;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     // Deze strings zijn de namen van een tabel en columns in de database
-    private static final String REGIO_TABLE = "REGIO_TABLE";
-    private static final String COLUMN_REGIO_NAAM = "REGIO_NAAM";
-    private static final String COLUMN_REGIO_BESCHRIJVING = "REGIO_BESCHRIJVING";
-    private static final String COLUMN_HOOFD_REGIO = "HOOFD_REGIO";
-    private static final String COLUMN_HOOFD_STAD = "HOOFD_STAD";
-    private static final String COLUMN_POPULATIE = "POPULATIE";
-    private static final String COLUMN_REGIO_VALUTA = "REGIO_VALUTA";
-    private static final String COLUMN_REGIO_SOORT = "REGIO_SOORT";
-    private static final String COLUMN_ALARM_NUMMER = "ALARM_NUMMER";
+    public static final String REGIO_TABLE = "REGIO_TABLE";
+    public static final String COLUMN_REGIO_NAAM = "REGIO_NAAM";
+    public static final String COLUMN_REGIO_BESCHRIJVING = "REGIO_BESCHRIJVING";
+    public static final String COLUMN_HOOFD_REGIO = "HOOFD_REGIO";
+    public static final String COLUMN_HOOFD_STAD = "HOOFD_STAD";
+    public static final String COLUMN_POPULATIE = "POPULATIE";
+    public static final String COLUMN_REGIO_VALUTA = "REGIO_VALUTA";
+    public static final String COLUMN_REGIO_SOORT = "REGIO_SOORT";
+    public static final String COLUMN_ALARM_NUMMER = "ALARM_NUMMER";
 
-    private static final String BEZIENSWAARDIGHEID_TABLE = "BEZIENSWAARDIGHEID_TABLE";
-    private static final String COLUMN_BEZ_NAAM = "BEZIENSWAARDIGHEID_NAAM";
-    private static final String COLUMN_BEZ_REGIO = "BEZIENSWAARDIGHEID_REGIO";
-    private static final String COLUMN_BEZ_STAD = "BEZIENSWAARDIGHEID_STAD";
-    private static final String COLUMN_BEZ_BETALING = "BEZIENSWAARDIGHEID_BETALING";
-    private static final String COLUMN_BEZ_BESCH = "BEZIENSWAARDIGHEID_BESCHRIJVING";
+    public static final String BEZIENSWAARDIGHEID_TABLE = "BEZIENSWAARDIGHEID_TABLE";
+    public static final String COLUMN_BEZ_NAAM = "BEZIENSWAARDIGHEID_NAAM";
+    public static final String COLUMN_BEZ_REGIO = "BEZIENSWAARDIGHEID_REGIO";
+    public static final String COLUMN_BEZ_STAD = "BEZIENSWAARDIGHEID_STAD";
+    public static final String COLUMN_BEZ_BETALING = "BEZIENSWAARDIGHEID_BETALING";
+    public static final String COLUMN_BEZ_BESCH = "BEZIENSWAARDIGHEID_BESCHRIJVING";
 
-    private static final String RELIGIE_TABLE = "RELIGIE_TABLE";
-    private static final String RELIGIE_KOPPEL_TABLE = "RELIGIE_KOPPEL_TABLE";
-    private static final String COLUMN_RELIGIE_NAAM = "RELIGIE_NAAM";
-    private static final String COLUMN_RELIGIE_REGIO = "RELIGIE_REGIO";
-    private static final String COLUMN_RELIGIE_PERCENTAGE = "RELIGIE_PERCENTAGE";
+    public static final String STEDEN_TABLE = "STAD_TABLE";
+    public static final String COLUMN_STAD_NAAM = "STAD_NAAM";
+    public static final String COLUMN_STAD_REGIO = "STAD_REGIO";
 
-    private static final String SPORT_TABLE = "SPORT_TABLE";
-    private static final String SPORT_KOPPEL_TABLE = "SPORT_KOPPEL_TABLE";
-    private static final String COLUMN_SPORT_NAAM = "SPORT_NAAM";
-    private static final String COLUMN_SPORT_REGIO = "SPORT_REGIO";
+    public static final String SPECIALITEIT_TABLE = "SPECIALITEIT_TABLE";
+    public static final String COLUMN_SPECIALITEIT_NAAM = "SPECIALITEIT_NAAM";
+    public static final String COLUMN_SPECIALITEIT_REGIO = "SPECIALITEIT_REGIO";
 
-    private static final String SPECIALITEIT_TABLE = "SPECIALITEIT_TABLE";
-    private static final String SPECIALITEIT_KOPPEL_TABLE = "SPECIALITEIT_KOPPEL_TABLE";
-    private static final String COLUMN_SPECIALITEIT_NAAM = "SPECIALITEIT_NAAM";
-    private static final String COLUMN_SPECIALITEIT_REGIO = "SPECIALITEIT_REGIO";
+    public static final String SPORT_TABLE = "SPORT_TABLE";
+    public static final String COLUMN_SPORT_NAAM = "SPORT_NAAM";
+    public static final String COLUMN_SPORT_REGIO = "SPORT_REGIO";
 
-    private static final String STEDEN_TABLE = "STAD_TABLE";
-    private static final String COLUMN_STAD_NAAM = "STAD_NAAM";
+    public static final String RELIGIE_TABLE = "RELIGIE_TABLE";
+    public static final String COLUMN_RELIGIE_NAAM = "RELIGIE_NAAM";
+    public static final String COLUMN_RELIGIE_REGIO = "RELIGIE_REGIO";
+    public static final String COLUMN_RELIGIE_PERCENTAGE = "RELIGIE_PERCENTAGE";
 
-    private static final String TAAL_TABLE = "TAAL_TABLE";
-    private static final String TAAL_KOPPEL_TABLE = "TAAL_KOPPEL_TABLE";
-    private static final String COLUMN_TAAL_NAAM = "TAAL_NAAM";
-    private static final String COLUMN_TAAL_REGIO = "TAAL_REGIO";
-    private static final String COLUMN_TAAL_PERCENTAGE = "TAAL_PERCENTAGE";
-
-    private static final String VALUTA_TABLE = "VALUTA_TABLE";
-
-    private static final String SOORT_TABLE = "SOORT_TABLE";
+    public static final String TAAL_TABLE = "TAAL_TABLE";
+    public static final String COLUMN_TAAL_NAAM = "TAAL_NAAM";
+    public static final String COLUMN_TAAL_REGIO = "TAAL_REGIO";
+    public static final String COLUMN_TAAL_PERCENTAGE = "TAAL_PERCENTAGE";
 
     public DatabaseHelper(@Nullable Context context) {
         super(context, "regioDatabase", null, 1);
@@ -71,53 +67,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         // Een string aanmaken om vervolgens een tabel mee te maken in de database
-        String regioTableMakenStatement = "CREATE TABLE " + REGIO_TABLE + " (" + COLUMN_REGIO_NAAM + " TEXT PRIMARY KEY, " + COLUMN_REGIO_BESCHRIJVING + " TEXT, " + COLUMN_HOOFD_REGIO + " TEXT, " + COLUMN_HOOFD_STAD + " TEXT, " + COLUMN_POPULATIE + " INTEGER, " + COLUMN_REGIO_VALUTA + " TEXT, " + COLUMN_REGIO_SOORT + " TEXT, " + COLUMN_ALARM_NUMMER + " TEXT, FOREIGN KEY (" + COLUMN_REGIO_SOORT + ") REFERENCES SOORT_TABLE(REGIO_SOORT), FOREIGN KEY (" + COLUMN_REGIO_VALUTA + ") REFERENCES VALUTA_TABLE(REGIO_VALUTA));";
+        String regioTableMakenStatement = "CREATE TABLE " + REGIO_TABLE + " (" + COLUMN_REGIO_NAAM + " TEXT PRIMARY KEY, " + COLUMN_REGIO_BESCHRIJVING + " TEXT, " + COLUMN_HOOFD_REGIO + " TEXT, " + COLUMN_HOOFD_STAD + " TEXT, " + COLUMN_POPULATIE + " INTEGER, " + COLUMN_REGIO_VALUTA + " TEXT, " + COLUMN_REGIO_SOORT + " TEXT, " + COLUMN_ALARM_NUMMER + " TEXT)";
         db.execSQL(regioTableMakenStatement);
 
-        String bezienswaardigheidTableMakenStatement = "CREATE TABLE " + BEZIENSWAARDIGHEID_TABLE + " (" + COLUMN_BEZ_NAAM + " TEXT PRIMARY KEY, " + COLUMN_BEZ_BESCH + " TEXT, " + COLUMN_BEZ_REGIO + " TEXT, " + COLUMN_BEZ_STAD + " TEXT, " + COLUMN_BEZ_BETALING + " TEXT, FOREIGN KEY (" + COLUMN_BEZ_REGIO + ") REFERENCES REGIO_TABLE(REGIO_NAAM));";
+        String bezienswaardigheidTableMakenStatement = "CREATE TABLE " + BEZIENSWAARDIGHEID_TABLE + " (" + COLUMN_BEZ_NAAM + " TEXT PRIMARY KEY, " + COLUMN_BEZ_BESCH + " TEXT, " + COLUMN_BEZ_REGIO + " TEXT, " + COLUMN_BEZ_STAD + " TEXT, " + COLUMN_BEZ_BETALING + "TEXT)";
         db.execSQL(bezienswaardigheidTableMakenStatement);
 
-        String religieTableMakenStatement = "CREATE TABLE " + RELIGIE_TABLE + " (" + COLUMN_RELIGIE_NAAM + " TEXT PRIMARY KEY);";
-        db.execSQL(religieTableMakenStatement);
-
-        String religieKoppelTableMakenStatement = "CREATE TABLE " + RELIGIE_KOPPEL_TABLE + " (" + COLUMN_RELIGIE_NAAM + " TEXT, " + COLUMN_RELIGIE_REGIO + " TEXT, " + COLUMN_RELIGIE_PERCENTAGE + " REAL, FOREIGN KEY (" + COLUMN_RELIGIE_REGIO + ") REFERENCES REGIO_TABLE(REGIO_NAAM), FOREIGN KEY (" + COLUMN_RELIGIE_NAAM + ") REFERENCES RELIGIE_TABLE(RELIGIE_NAAM));";
-        db.execSQL(religieKoppelTableMakenStatement);
-
-        String sportTableMakenStatement = "CREATE TABLE " + SPORT_TABLE + " (" + COLUMN_SPORT_NAAM + " TEXT PRIMARY KEY);";
-        db.execSQL(sportTableMakenStatement);
-
-        String sportKoppelTableMakenStatement = "CREATE TABLE " + SPORT_KOPPEL_TABLE + " (" + COLUMN_SPORT_NAAM + " TEXT, " + COLUMN_SPORT_REGIO + " TEXT, FOREIGN KEY (" + COLUMN_SPORT_REGIO + ") REFERENCES REGIO_TABLE(REGIO_NAAM), FOREIGN KEY (" + COLUMN_SPORT_NAAM + ") REFERENCES SPORT_TABLE(SPORT_NAAM));";
-        db.execSQL(sportKoppelTableMakenStatement);
-
-        String specialiteitTableMakenStatement = "CREATE TABLE " + SPECIALITEIT_TABLE + " (" + COLUMN_SPECIALITEIT_NAAM + "TEXT PRIMARY KEY);";
-        db.execSQL(specialiteitTableMakenStatement);
-
-        String specialiteitKoppelTableMakenStatement = "CREATE TABLE " + SPECIALITEIT_KOPPEL_TABLE + " (" + COLUMN_SPECIALITEIT_NAAM + " TEXT, " + COLUMN_SPECIALITEIT_REGIO + " TEXT, FOREIGN KEY (" + COLUMN_SPECIALITEIT_REGIO + ") REFERENCES REGIO_TABLE(REGIO_NAAM), FOREIGN KEY (" + COLUMN_SPECIALITEIT_NAAM + ") REFERENCES SPECIALITEIT_TABLE(SPECIALITEIT_NAAM));";
-        db.execSQL(specialiteitKoppelTableMakenStatement);
-
-        String stedenTableMakenStatement = "CREATE TABLE " + STEDEN_TABLE + " (" + COLUMN_STAD_NAAM + " TEXT);";
+        String stedenTableMakenStatement = "CREATE TABLE " + STEDEN_TABLE + " (" + COLUMN_STAD_NAAM + " TEXT PRIMARY KEY, " + COLUMN_STAD_REGIO + " TEXT)";
         db.execSQL(stedenTableMakenStatement);
 
-        String taalTableMakenStatement = "CREATE TABLE " + TAAL_TABLE + " (" + COLUMN_TAAL_NAAM + " TEXT);";
+        String specialiteitTableMakenStatement = "CREATE TABLE " + SPECIALITEIT_TABLE + " (" + COLUMN_SPECIALITEIT_NAAM + " TEXT PRIMARY KEY, " + COLUMN_SPECIALITEIT_REGIO + " TEXT)";
+        db.execSQL(specialiteitTableMakenStatement);
+
+        String sportTableMakenStatement = "CREATE TABLE " + SPORT_TABLE + " (" + COLUMN_SPORT_NAAM + " TEXT PRIMARY KEY, " + COLUMN_SPORT_REGIO + " TEXT)";
+        db.execSQL(sportTableMakenStatement);
+
+        String religieTableMakenStatement = "CREATE TABLE " + RELIGIE_TABLE + " (" + COLUMN_RELIGIE_NAAM + " TEXT PRIMARY KEY, " + COLUMN_RELIGIE_REGIO + " TEXT, " + COLUMN_RELIGIE_PERCENTAGE + " REAL)";
+        db.execSQL(religieTableMakenStatement);
+
+        String taalTableMakenStatement = "CREATE TABLE " + TAAL_TABLE + " (" + COLUMN_TAAL_NAAM + " TEXT PRIMARY KEY, " + COLUMN_TAAL_REGIO + " TEXT, " + COLUMN_TAAL_PERCENTAGE + " REAL)";
         db.execSQL(taalTableMakenStatement);
-
-        String taalKoppelTableMakenStatement = "CREATE TABLE " + TAAL_KOPPEL_TABLE + " (" + COLUMN_TAAL_NAAM + " TEXT, " + COLUMN_TAAL_REGIO + " TEXT, " + COLUMN_TAAL_PERCENTAGE + " REAL, FOREIGN KEY (" + COLUMN_TAAL_REGIO + ") REFERENCES REGIO_TABLE(REGIO_NAAM), FOREIGN KEY (" + COLUMN_TAAL_NAAM + ") REFERENCES TAAL_TABLE(TAAL_NAAM));";
-        db.execSQL(taalKoppelTableMakenStatement);
-
-        String valutaTableMakenStatement = "CREATE TABLE " + VALUTA_TABLE + " (" + COLUMN_REGIO_VALUTA + " TEXT PRIMARY KEY);";
-        db.execSQL(valutaTableMakenStatement);
-        db.execSQL("INSERT INTO " + VALUTA_TABLE + " VALUES ('Euro')");
-        db.execSQL("INSERT INTO " + VALUTA_TABLE + " VALUES ('Dollar')");
-        db.execSQL("INSERT INTO " + VALUTA_TABLE + " VALUES ('Pond')");
-        db.execSQL("INSERT INTO " + VALUTA_TABLE + " VALUES ('Yen')");
-        db.execSQL("INSERT INTO " + VALUTA_TABLE + " VALUES ('Dinar')");
-        db.execSQL("INSERT INTO " + VALUTA_TABLE + " VALUES ('Kroon')");
-
-        String soortTableMakenStatement = "CREATE TABLE " + SOORT_TABLE + " (" + COLUMN_REGIO_SOORT + " TEXT PRIMARY KEY);";
-        db.execSQL(soortTableMakenStatement);
-        db.execSQL("INSERT INTO " + SOORT_TABLE + " VALUES ('Land');");
-        db.execSQL("INSERT INTO " + SOORT_TABLE + " VALUES ('Provincie');");
-        db.execSQL("INSERT INTO " + SOORT_TABLE + " VALUES ('Omgeving');");
 
         // Landen toevoegen bij het maken van de database
         db.execSQL("INSERT INTO " + REGIO_TABLE + " VALUES ('Nederland', 'Een land is west Europa. Bekend van tulpen, kaas en klompen.', null, 'Amsterdam', '17000000', 'Euro', 'Land', '112')");
@@ -125,33 +94,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO " + REGIO_TABLE + " VALUES ('Duitsland', 'Een van de grootste landen in Europa met een oppervlakte van 357.022 vierkante kilometer.', null, 'Berlijn', '80594017', 'Euro', 'Land', '112')");
         db.execSQL("INSERT INTO " + REGIO_TABLE + " VALUES ('Noord-Brabant', 'De mooiste provincie van heel Nederland.', 'Nederland', 'Den Bosch', '2500000', null, 'Provincie', null)");
 
-        db.execSQL("INSERT INTO " + BEZIENSWAARDIGHEID_TABLE + " VALUES ('De Domtoren', 'Een gotische kerk in Utrecht. Gebouwd vanaf 1254.', 'Nederland', 'Utrecht', null)");
+        db.execSQL("INSERT INTO " + TAAL_TABLE + " VALUES ('Nederlands', 'Nederland', 92.0 )");
+        db.execSQL("INSERT INTO " + TAAL_TABLE + " VALUES ('Duits', 'Duitsland', 92.0 )");
+        db.execSQL("INSERT INTO " + TAAL_TABLE + " VALUES ('Frans', 'Frankrijk', 92.0 )");
+        db.execSQL("INSERT INTO " + TAAL_TABLE + " VALUES ('Portugees', 'Portugal', 92.0 )");
+        db.execSQL("INSERT INTO " + TAAL_TABLE + " VALUES ('Spaans', 'Spanje', 92.0 )");
+        db.execSQL("INSERT INTO " + TAAL_TABLE + " VALUES ('Italiaans', 'Italië', 92.0 )");
+        db.execSQL("INSERT INTO " + TAAL_TABLE + " VALUES ('Turks', 'Turkije', 92.0 )");
+        db.execSQL("INSERT INTO " + TAAL_TABLE + " VALUES ('Grieks', 'Griekenland', 92.0 )");
 
-        db.execSQL("INSERT INTO " + RELIGIE_TABLE + " VALUES ('Rooms-katholiek'), ('Protestants'), ('Islamitisch')");
-
-        db.execSQL("INSERT INTO " + RELIGIE_KOPPEL_TABLE + " VALUES ('Rooms-katholiek', 'Nederland', 24.00)");
-        db.execSQL("INSERT INTO " + RELIGIE_KOPPEL_TABLE + " VALUES ('Protestants', 'Nederland', 15.00)");
-        db.execSQL("INSERT INTO " + RELIGIE_KOPPEL_TABLE + " VALUES ('Islamitisch', 'Nederland', 5.00)");
-
-        db.execSQL("INSERT INTO " + SPORT_TABLE + " VALUES ('Schaatsen'), ('Voetbal'), ('Atletiek')");
-
-        db.execSQL("INSERT INTO " + SPORT_KOPPEL_TABLE + " VALUES ('Schaatsen', 'Nederland')");
-        db.execSQL("INSERT INTO " + SPORT_KOPPEL_TABLE + " VALUES ('Voetbal', 'Nederland')");
-        db.execSQL("INSERT INTO " + SPORT_KOPPEL_TABLE + " VALUES ('Atletiek', 'Nederland')");
-
-        db.execSQL("INSERT INTO " + SPECIALITEIT_TABLE + " VALUES ('Kaas')");
-
-        db.execSQL("INSERT INTO " + SPECIALITEIT_KOPPEL_TABLE + " VALUES ('Kaas', 'Nederland')");
-
-        db.execSQL("INSERT INTO " + STEDEN_TABLE + " VALUES ('Utrecht')");
-        db.execSQL("INSERT INTO " + STEDEN_TABLE + " VALUES ('Amsterdam')");
-        db.execSQL("INSERT INTO " + STEDEN_TABLE + " VALUES ('Londen')");
-        db.execSQL("INSERT INTO " + STEDEN_TABLE + " VALUES ('Parijs')");
-        db.execSQL("INSERT INTO " + STEDEN_TABLE + " VALUES ('Madrid')");
-
-        db.execSQL("INSERT INTO " + TAAL_KOPPEL_TABLE + " VALUES ('Nederlands', 'Nederland', 95.00)");
-        db.execSQL("INSERT INTO " + TAAL_KOPPEL_TABLE + " VALUES ('Engels', 'Nederland', 75.00)");
-
+        db.execSQL("INSERT INTO " + RELIGIE_TABLE + " VALUES ('Rooms-Katholiek', 'Portugal', 92.0 )");
+        db.execSQL("INSERT INTO " + RELIGIE_TABLE + " VALUES ('Orthodox-Katholiek', 'Spanje', 92.0 )");
+        db.execSQL("INSERT INTO " + RELIGIE_TABLE + " VALUES ('Protestants-Christelijk', 'Portugal', 92.0 )");
+        db.execSQL("INSERT INTO " + RELIGIE_TABLE + " VALUES ('Islamitisch', 'Spanje', 92.0 )");
+        db.execSQL("INSERT INTO " + RELIGIE_TABLE + " VALUES ('Joods', 'België', 92.0 )");
+        db.execSQL("INSERT INTO " + RELIGIE_TABLE + " VALUES ('Boeddhisme', 'Spanje', 92.0 )");
     }
 
     @Override
@@ -254,10 +211,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         cursor.close();
         db.close();
-        return  returnList;
+        return returnList;
     }
 
-    public Regio geselecteerdeRegioLaden(String landNaam) {
+    public Regio geselecteerdLandLaden(String landNaam) {
 
         Regio geselecteerdLand;
         String query = "SELECT * FROM " + REGIO_TABLE + " WHERE " + COLUMN_REGIO_NAAM + " = '" + landNaam + "'";
@@ -279,5 +236,96 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return geselecteerdLand;
+    }
+
+
+    /**
+     * Methode voor het ophalen van een lijst met alle unieke talen in de database
+     *
+     * @return List met talen
+     */
+    public List<Taal> getTalen() {
+        List<Taal> talen = new ArrayList<>();
+        String query = "SELECT DISTINCT " + COLUMN_TAAL_NAAM + " FROM " + TAAL_TABLE;
+        try (SQLiteDatabase db = getWritableDatabase(); Cursor cursor = db.rawQuery(query, null)) {
+            while (cursor.moveToNext()) {
+                Taal taal = new Taal(cursor.getString(cursor.getColumnIndex(COLUMN_TAAL_NAAM)));
+                talen.add(taal);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return talen;
+    }
+
+    /**
+     * Methode voor het ophalen van een lijst met alle unieke religies in de database
+     *
+     * @return List met religies
+     */
+    public List<Religie> getReligies() {
+        List<Religie> religies = new ArrayList<>();
+        String query = "SELECT DISTINCT " + COLUMN_RELIGIE_NAAM + " FROM " + RELIGIE_TABLE;
+        try (SQLiteDatabase db = getWritableDatabase(); Cursor cursor = db.rawQuery(query, null)) {
+            while (cursor.moveToNext()) {
+                Religie religie = new Religie(cursor.getString(cursor.getColumnIndex(COLUMN_RELIGIE_NAAM)));
+                religies.add(religie);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return religies;
+    }
+
+    /**
+     * Maakt uit List met database records die voldoen aan de opgegeven filtercriteria
+     * Criteria worden aangeleverd als Lists van dynamische groote
+     * Records die aan één criteria voldoen worden teruggekeerd
+     *
+     * @param talen   List met talen waarop gefilterd moet worden
+     * @param religie list met religie waarop gefilterd moet worden
+     * @return List met Landnamen die voldoen aan de geselecteerde filter
+     */
+    public List<String> filterLandenList(List<String> talen, List<String> religie) {
+        List<String> landenList = new ArrayList<>();
+        List<String> parametersList = new ArrayList<>();
+        parametersList.addAll(talen);
+        parametersList.addAll(religie);
+        String[] selectionArgs = parametersList.toArray(new String[0]);
+
+        String query = "SELECT DISTINCT " + REGIO_TABLE + "." + COLUMN_REGIO_NAAM + " FROM " + REGIO_TABLE +
+                " LEFT JOIN " + TAAL_TABLE + " ON (" + REGIO_TABLE + "." + COLUMN_REGIO_NAAM + " = " + TAAL_TABLE + "." + COLUMN_TAAL_REGIO + ")" +
+                " LEFT JOIN " + RELIGIE_TABLE + " ON (" + REGIO_TABLE + "." + COLUMN_REGIO_NAAM + " = " + RELIGIE_TABLE + "." + COLUMN_RELIGIE_REGIO + ")" +
+                " WHERE (" + TAAL_TABLE + "." + COLUMN_TAAL_NAAM + " IN (" + makePlaceHolders(talen.size()) + ")" +
+                " OR " + RELIGIE_TABLE + "." + COLUMN_RELIGIE_NAAM + " IN (" + makePlaceHolders(religie.size()) + "))" +
+                " AND " + REGIO_TABLE + "." + COLUMN_REGIO_SOORT + " = 'Land'";
+
+        try (SQLiteDatabase db = getWritableDatabase(); Cursor cursor = db.rawQuery(query, selectionArgs)) {
+            while (cursor.moveToNext()) {
+                landenList.add(cursor.getString(cursor.getColumnIndex(COLUMN_REGIO_NAAM)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return landenList;
+    }
+
+    /**
+     * Zet lengte van een collection om naar een gelijk aantal placeHolders
+     *
+     * @param length Lengte van de collectie waar placeholders voor gemaakt moeten worden
+     * @return String met dynamisch aantal placeholders
+     */
+    private String makePlaceHolders(int length) {
+        StringBuilder sb = new StringBuilder();
+        if (length == 0) {
+            return null;
+        } else {
+            sb.append("?");
+            for (int i = 1; i < length; i++) {
+                sb.append(",?");
+            }
+            return sb.toString();
+        }
     }
 }
