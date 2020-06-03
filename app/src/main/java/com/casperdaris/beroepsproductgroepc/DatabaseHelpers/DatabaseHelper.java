@@ -271,10 +271,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return  returnList;
     }
 
-    public List<String> geselecteerdeRegioRegios(String landNaam) {
+    /**
+     * zoekt door de tabel van regio_table of er een regio of regios zijn van de gekozen land
+     *
+     * @param regio De gekozen land van een lijst met andere landen
+     * @return Een lijst met regios
+     */
+    public List<String> geselecteerdeRegioRegios(String regio) {
 
         List<String> returnList = new ArrayList<>();
-        String query = "SELECT * FROM " + REGIO_TABLE + " WHERE " + COLUMN_HOOFD_REGIO + " = '" + landNaam + "'";
+        String query = "SELECT * FROM " + REGIO_TABLE + " WHERE " + COLUMN_HOOFD_REGIO + " = '" + regio + "'";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToFirst()) {
@@ -323,6 +329,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return geselecteerdLand;
     }
 
+    /**
+     * Geeft de religies van de gekozen landNaam
+     *
+     * @param landNaam De gekozen land van een lijst met andere landen
+     * @return Een lijst de wordt verandert naar een String
+     */
     public String geselecteerdeRegioReligie(String landNaam) {
         List<String> list;
         list= new ArrayList<>();
@@ -346,6 +358,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return list.toString();
     }
 
+    /**
+     * Geeft de specialiteiten van de gekozen landNaam
+     *
+     * @param landNaam De gekozen land van een lijst met andere landen
+     * @return Een lijst de wordt verandert naar een String
+     */
     public String geselecteerdeRegioSpecialiteit(String landNaam) {
         List<String> list;
         list= new ArrayList<>();
@@ -370,6 +388,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return list.toString();
     }
 
+    /**
+     * Geeft de sporten van de gekozen landNaam
+     *
+     * @param landNaam De gekozen land van een lijst met andere landen
+     * @return Een lijst de wordt verandert naar een String
+     */
     public String geselecteerdeRegioSport(String landNaam) {
         List<String> list;
         list= new ArrayList<>();
@@ -393,6 +417,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return list.toString();
     }
 
+    /**
+     * Geeft de talen van de gekozen landNaam
+     *
+     * @param landNaam De gekozen land van een lijst met andere landen
+     * @return Een lijst de wordt verandert naar een String
+     */
     public String geselecteerdeRegioTaal(String landNaam) {
         List<String> list;
         list= new ArrayList<>();
@@ -417,10 +447,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return list.toString();
     }
 
-    public Bezienswaardigheid geselecteerdeStadBezienswaardigheid(String landNaam) {
+    /**
+     * Geeft de bezienswaardigheden van de gekozen stad
+     *
+     * @param stadNaam De gekozen stad van een lijst met andere steden
+     * @return Een bezienswaardigheid object
+     */
+    public Bezienswaardigheid geselecteerdeStadBezienswaardigheid(String stadNaam) {
 
         Bezienswaardigheid geselecteerdLand;
-        String query = "SELECT * FROM " + BEZIENSWAARDIGHEID_TABLE + " WHERE " + COLUMN_BEZ_STAD + " = '" + landNaam + "'";
+        String query = "SELECT * FROM " + BEZIENSWAARDIGHEID_TABLE + " WHERE " + COLUMN_BEZ_STAD + " = '" + stadNaam + "'";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToFirst()) {
@@ -432,13 +468,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             geselecteerdLand = new Bezienswaardigheid(bezienswaardigheidNaam, beschrijving, regio, stad, betaling);
 
         } else {
-            geselecteerdLand = new Bezienswaardigheid( "Geen bezienswaardigheid voor "+ landNaam, "Geen beschrijving voor "+ landNaam, "Geen regio voor "+ landNaam, "Geen stad voor "+ landNaam, "Geen betaling voor "+ landNaam);
+            geselecteerdLand = new Bezienswaardigheid( "Geen bezienswaardigheid voor "+ stadNaam, "Geen beschrijving voor "+ stadNaam, "Geen regio voor "+ stadNaam, "Geen stad voor "+ stadNaam, "Geen betaling voor "+ stadNaam);
         }
         cursor.close();
         db.close();
         return geselecteerdLand;
     }
 
+    /**
+     * zoekt door de tabel van Steden_koppel_table of er een stad of steden zijn van de gekozen land
+     *
+     * @param landNaam De gekozen land van een lijst met andere landen
+     * @return Een lijst met steden
+     */
     public List<String> geselecteerdeRegioStad(String landNaam) {
 
         List<String> returnList = new ArrayList<>();
