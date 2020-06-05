@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.StadInfo"></activity>
+        <activity android:theme="@style/FilterTheme"
+            android:label="@string/filters"
+            android:parentActivityName=".Activities.LandenLijstActivity"
+            android:name=".Activities.FilterActivity"/>
+        <activity android:name=".Activities.StadInfo" />
         <activity android:name=".Activities.RegiosInfoActiviteit" />
         <activity android:name=".Activities.MapsActivity" />
         <activity android:name=".Activities.FiltersvoorZoeken" />

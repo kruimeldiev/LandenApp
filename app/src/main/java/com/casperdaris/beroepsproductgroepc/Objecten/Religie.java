@@ -1,4 +1,4 @@
-package com.casperdaris.beroepsproductgroepc.Objecten_S;
+package com.casperdaris.beroepsproductgroepc.Objecten;
 
 public class Religie {
 

@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -18,20 +17,19 @@ import android.widget.SearchView;
 
 import androidx.appcompat.widget.Toolbar;
 
-import com.casperdaris.beroepsproductgroepc.DataBaseHelper;
+import com.casperdaris.beroepsproductgroepc.DatabaseHelpers.DatabaseHelper;
 import com.casperdaris.beroepsproductgroepc.Objecten.Regio;
 import com.casperdaris.beroepsproductgroepc.R;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class LandenLijstActivity extends AppCompatActivity {
 
     private ListView landenLijstListView;
     private Toolbar landenLijstToolbar;
     private ArrayAdapter landenArrayAdapter;
-    private DataBaseHelper databaseHelper;
+    private DatabaseHelper databaseHelper;
 
     public Regio geselecteerdeRegio;
 
@@ -41,7 +39,7 @@ public class LandenLijstActivity extends AppCompatActivity {
         setContentView(R.layout.activity_landen_lijst);
         landenLijstListView = findViewById(R.id.landenListView);
         landenLijstToolbar = findViewById(R.id.landenLijstToolbar);
-        databaseHelper = new DataBaseHelper(this);
+        databaseHelper = new DatabaseHelper(this);
 
         List<String> alleLanden = new ArrayList<>();
         Bundle bundle = getIntent().getExtras();
@@ -93,7 +91,7 @@ public class LandenLijstActivity extends AppCompatActivity {
         filterItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                Intent i = new Intent(LandenLijstActivity.this, FiltersvoorZoeken.class);
+                Intent i = new Intent(LandenLijstActivity.this, FilterActivity.class);
                 startActivity(i);
                 return false;
             }

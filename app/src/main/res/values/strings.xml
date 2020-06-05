@@ -1,27 +1,66 @@
-<resources>
-    <string name="app_name">BeroepsproductGroepC</string>
+<?xml version="1.0"?>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <resources>
+
+    <string name="app_name">LandenApp</string>
+
 
     <string-array name="valuta">
-        <item>Euro</item>
-        <item>Dollar</item>
-        <item>Pond</item>
-        <item>Yen</item>
-        <item>Dinar</item>
-        <item>Frank</item>
-        <item>Kroon</item>
-        <item>Peso</item>
-        <item>Zloty</item>
-        <item>Roebel</item>
-        <item>Rial</item>
-    </string-array>
+
+    <item>Euro</item>
+
+    <item>Dollar</item>
+
+    <item>Pond</item>
+
+    <item>Yen</item>
+
+    <item>Dinar</item>
+
+    <item>Frank</item>
+
+    <item>Kroon</item>
+
+    <item>Peso</item>
+
+    <item>Zloty</item>
+
+    <item>Roebel</item>
+
+    <item>Rial</item>
+
+</string-array>
+
 
     <string-array name="regioSoort">
-        <item>Land</item>
-        <item>Provincie</item>
-        <item>Regio</item>
-        <item>Omgeving</item>
-    </string-array>
+
+    <item>Land</item>
+
+    <item>Provincie</item>
+
+    <item>Regio</item>
+
+    <item>Omgeving</item>
+
+</string-array>
+
+    <!-- FilterActivity -->
+
+
+    <string name="back">Back</string>
+
+    <string name="informatie">Informatie</string>
+
+    <string name="infoText">Het is mogelijk filters toe te passen voor een of meerdere talen en/of religies.</string>
+
+    <string name="infoConfirm">Ok</string>
+
+    <string name="talen">Talen</string>
+
+    <string name="religie">Religie</string>
+
+    <string name="filters">Filter Landen</string>
+
+    <string name="bevestigen">Bevestigen</string>
 
 </resources>

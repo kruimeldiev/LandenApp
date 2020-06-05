@@ -9,17 +9,8 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.casperdaris.beroepsproductgroepc.DataBaseHelper;
 import com.casperdaris.beroepsproductgroepc.DatabaseHelpers.DatabaseHelper;
-import com.casperdaris.beroepsproductgroepc.DatabaseHelpers.DatabaseHelperBezienswaardigheid;
-import com.casperdaris.beroepsproductgroepc.DatabaseHelpers.DatabaseHelperRegio;
-import com.casperdaris.beroepsproductgroepc.DatabaseHelpers.DatabaseHelperReligie;
-import com.casperdaris.beroepsproductgroepc.DatabaseHelpers.DatabaseHelperSpecialiteit;
-import com.casperdaris.beroepsproductgroepc.DatabaseHelpers.DatabaseHelperSport;
-import com.casperdaris.beroepsproductgroepc.DatabaseHelpers.DatabaseHelperTaal;
 import com.casperdaris.beroepsproductgroepc.Objecten.Bezienswaardigheid;
-import com.casperdaris.beroepsproductgroepc.Objecten.Regio;
-import com.casperdaris.beroepsproductgroepc.Objecten.Stad;
 import com.casperdaris.beroepsproductgroepc.R;
 
 public class StadInfo extends AppCompatActivity {
