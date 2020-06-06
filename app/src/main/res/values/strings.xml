@@ -55,8 +55,8 @@
     <!-- StadInfoActivity -->
     <string name="tvBezienswaardigheid">Bezienswaardigheid:</string>
     <string name="etBezienswaardigheid">bezienswaardigheid</string>
-    <string name="tvBescrijving">Bescrijving:</string>
-    <string name="etBescrijving">bescrijving</string>
+    <string name="tvBescrijving">Beschrijving:</string>
+    <string name="etBescrijving">beschrijving</string>
     <string name="tvRegio">Regio:</string>
     <string name="etRegio">regio</string>
     <string name="tvBetaling">Betaling:</string>
