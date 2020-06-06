@@ -16,7 +16,6 @@
         <activity android:name=".Activities.StadInfo" />
         <activity android:name=".Activities.RegiosInfoActiviteit" />
         <activity android:name=".Activities.MapsActivity" />
-        <activity android:name=".Activities.FiltersvoorZoeken" />
         <activity android:name=".Activities.LandenLijstActivity" />
         <activity android:name=".Activities.RegioActivity" />
         <activity android:name=".Activities.MainActivity">

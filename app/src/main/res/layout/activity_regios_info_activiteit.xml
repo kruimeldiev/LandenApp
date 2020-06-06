@@ -54,7 +54,7 @@
         <TextView
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Taal:"
+            android:text="@string/tvTaal"
             android:textSize="20dp"
             android:textColor="@color/text_color"/>
 
@@ -62,7 +62,7 @@
             android:id="@+id/taalVanRegio_infoactiviteit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Gesproken taal"
+            android:text="@string/etTaal"
             android:textSize="20dp"/>
 
     </LinearLayout>
@@ -76,7 +76,7 @@
         <TextView
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Valuta:"
+            android:text="@string/tvValuta"
             android:textSize="20dp"
             android:textColor="@color/text_color"/>
 
@@ -84,7 +84,7 @@
             android:id="@+id/valutaVanRegio_infoactiviteit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Munteenheid"
+            android:text="@string/etValuta"
             android:textSize="20dp"/>
 
     </LinearLayout>
@@ -98,7 +98,7 @@
         <TextView
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Hoofdstad:"
+            android:text="@string/tvHoofdstad"
             android:textSize="20dp"
             android:textColor="@color/text_color"/>
 
@@ -106,7 +106,7 @@
             android:id="@+id/hoofdstadVanRegio_infoactiviteit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Stad"
+            android:text="@string/etHoofdstad"
             android:textSize="20dp"/>
 
     </LinearLayout>
@@ -120,7 +120,7 @@
         <TextView
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Religie:"
+            android:text="@string/tvReligie"
             android:textSize="20dp"
             android:textColor="@color/text_color"/>
 
@@ -128,7 +128,7 @@
             android:id="@+id/religieVanRegio_infoactiviteit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Religie"
+            android:text="@string/etReligie"
             android:textSize="20dp"/>
 
     </LinearLayout>
@@ -142,7 +142,7 @@
         <TextView
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Sport:"
+            android:text="@string/tvSport"
             android:textSize="20dp"
             android:textColor="@color/text_color"/>
 
@@ -150,7 +150,7 @@
             android:id="@+id/sportVanRegio_infoactiviteit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sport"
+            android:text="@string/etSport"
             android:textSize="20dp"/>
 
     </LinearLayout>
@@ -164,7 +164,7 @@
         <TextView
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Specialiteit:"
+            android:text="@string/tvSpecialiteit"
             android:textSize="20dp"
             android:textColor="@color/text_color"/>
 
@@ -172,7 +172,7 @@
             android:id="@+id/specialiteitVanRegio_infoactiviteit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Specialiteit"
+            android:text="@string/etSpecialiteit"
             android:textSize="20dp"/>
 
 </LinearLayout>

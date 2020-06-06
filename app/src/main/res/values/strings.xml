@@ -1,66 +1,72 @@
 <?xml version="1.0"?>
 
     <resources>
-
     <string name="app_name">LandenApp</string>
 
-
     <string-array name="valuta">
-
     <item>Euro</item>
-
     <item>Dollar</item>
-
     <item>Pond</item>
-
     <item>Yen</item>
-
     <item>Dinar</item>
-
     <item>Frank</item>
-
     <item>Kroon</item>
-
     <item>Peso</item>
-
     <item>Zloty</item>
-
     <item>Roebel</item>
-
     <item>Rial</item>
-
-</string-array>
-
+    </string-array>
 
     <string-array name="regioSoort">
-
     <item>Land</item>
-
     <item>Provincie</item>
-
     <item>Regio</item>
-
     <item>Omgeving</item>
-
-</string-array>
+    </string-array>
 
     <!-- FilterActivity -->
-
-
     <string name="back">Back</string>
-
     <string name="informatie">Informatie</string>
-
     <string name="infoText">Het is mogelijk filters toe te passen voor een of meerdere talen en/of religies.</string>
-
     <string name="infoConfirm">Ok</string>
-
     <string name="talen">Talen</string>
-
     <string name="religie">Religie</string>
-
     <string name="filters">Filter Landen</string>
-
     <string name="bevestigen">Bevestigen</string>
+
+    <!-- RegioActivity -->
+    <string name="regionaam">REGIONAAM</string>
+    <string name="bescrijvingregio">Hier staat een een voorbeeld voor de beschrijving van de regio.</string>
+
+    <!-- RegioActivity// informatieTab -->
+    <string name="tvTaal">Taal:</string>
+    <string name="etTaal">Gesproken taal</string>
+    <string name="tvValuta">Valuta:</string>
+    <string name="etValuta">Munteenheid</string>
+    <string name="tvHoofdstad">Hoofdstad:</string>
+    <string name="etHoofdstad">Stad</string>
+    <string name="tvReligie">Religie:</string>
+    <string name="etReligie">religie</string>
+    <string name="tvSport">Sport:</string>
+    <string name="etSport">sport</string>
+    <string name="tvSpecialiteit">Specialiteit:</string>
+    <string name="etSpecialiteit">specialiteit</string>
+
+    <!-- StadInfoActivity -->
+    <string name="tvBezienswaardigheid">Bezienswaardigheid:</string>
+    <string name="etBezienswaardigheid">bezienswaardigheid</string>
+    <string name="tvBescrijving">Bescrijving:</string>
+    <string name="etBescrijving">bescrijving</string>
+    <string name="tvRegio">Regio:</string>
+    <string name="etRegio">regio</string>
+    <string name="tvBetaling">Betaling:</string>
+    <string name="etBetaling">betaling</string>
+
+    <!-- RegioTab -->
+    <string name="titelregiotab">Regios</string>
+
+    <!-- StadTab -->
+    <string name="titelstadtab">Steden</string>
+
 
 </resources>

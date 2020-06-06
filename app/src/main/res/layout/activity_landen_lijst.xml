@@ -10,12 +10,12 @@
     android:background="@color/White">
 
     <androidx.appcompat.widget.Toolbar
+        android:background="@color/White"
         android:id="@+id/landenLijstToolbar"
         android:minHeight="?attr/actionBarSize"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:titleTextColor="@android:color/white"
-        android:background="?attr/colorPrimary">
+        app:titleTextColor="@color/colorAccent">
     </androidx.appcompat.widget.Toolbar>
 
     <ListView

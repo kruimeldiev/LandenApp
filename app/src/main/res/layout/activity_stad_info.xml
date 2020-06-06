@@ -54,7 +54,7 @@ android:background="@color/White">
         <TextView
             android:layout_width="187dp"
             android:layout_height="wrap_content"
-            android:text="Bezienswaardigheid:"
+            android:text="@string/tvBezienswaardigheid"
             android:textSize="20dp"
             android:textColor="@color/text_color"/>
 
@@ -62,7 +62,7 @@ android:background="@color/White">
             android:id="@+id/bezienswaardigheidVanStad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Bezienswaardigheid"
+            android:text="@string/etBezienswaardigheid"
             android:textSize="20dp"/>
 
     </LinearLayout>
@@ -76,7 +76,7 @@ android:background="@color/White">
         <TextView
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Bescrijving:"
+            android:text="@string/tvBescrijving"
             android:textSize="20dp"
             android:textColor="@color/text_color"/>
 
@@ -84,7 +84,7 @@ android:background="@color/White">
             android:id="@+id/bescrijvingVanStad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Bescrijving"
+            android:text="@string/etBezienswaardigheid"
             android:textSize="20dp"/>
 
     </LinearLayout>
@@ -98,7 +98,7 @@ android:background="@color/White">
         <TextView
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Regio:"
+            android:text="@string/tvRegio"
             android:textSize="20dp"
             android:textColor="@color/text_color"/>
 
@@ -106,7 +106,7 @@ android:background="@color/White">
             android:id="@+id/RegioVanStad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Regio"
+            android:text="@string/etRegio"
             android:textSize="20dp"/>
 
     </LinearLayout>
@@ -120,7 +120,7 @@ android:background="@color/White">
         <TextView
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="Betaling:"
+            android:text="@string/tvBetaling"
             android:textSize="20dp"
             android:textColor="@color/text_color"/>
 
@@ -128,7 +128,7 @@ android:background="@color/White">
             android:id="@+id/betalingVanStad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Betaling"
+            android:text="@string/etBetaling"
             android:textSize="20dp"/>
 
     </LinearLayout>
