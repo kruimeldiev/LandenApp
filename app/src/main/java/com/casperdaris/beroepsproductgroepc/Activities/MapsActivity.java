@@ -1,8 +1,8 @@
 package com.casperdaris.beroepsproductgroepc.Activities;
 
-import android.os.Bundle;
-
 import androidx.fragment.app.FragmentActivity;
+
+import android.os.Bundle;
 
 import com.casperdaris.beroepsproductgroepc.R;
 import com.google.android.gms.maps.CameraUpdateFactory;

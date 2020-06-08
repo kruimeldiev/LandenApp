@@ -1,27 +1,27 @@
 <?xml version="1.0"?>
 
-    <resources>
+<resources>
     <string name="app_name">LandenApp</string>
 
     <string-array name="valuta">
-    <item>Euro</item>
-    <item>Dollar</item>
-    <item>Pond</item>
-    <item>Yen</item>
-    <item>Dinar</item>
-    <item>Frank</item>
-    <item>Kroon</item>
-    <item>Peso</item>
-    <item>Zloty</item>
-    <item>Roebel</item>
-    <item>Rial</item>
+        <item>Euro</item>
+        <item>Dollar</item>
+        <item>Pond</item>
+        <item>Yen</item>
+        <item>Dinar</item>
+        <item>Frank</item>
+        <item>Kroon</item>
+        <item>Peso</item>
+        <item>Zloty</item>
+        <item>Roebel</item>
+        <item>Rial</item>
     </string-array>
 
     <string-array name="regioSoort">
-    <item>Land</item>
-    <item>Provincie</item>
-    <item>Regio</item>
-    <item>Omgeving</item>
+        <item>Land</item>
+        <item>Provincie</item>
+        <item>Regio</item>
+        <item>Omgeving</item>
     </string-array>
 
     <!-- FilterActivity -->
@@ -67,6 +67,10 @@
 
     <!-- StadTab -->
     <string name="titelstadtab">Steden</string>
+
+    <!-- MAPS -->
+    <string name="GOOGLE_MAPS_API_KEY">AIzaSyDR5ophWG2CE-b-eM1Y1HSBtnazYSXrQSI</string>
+    <string name="title_activity_maps">Map</string>
 
 
 </resources>

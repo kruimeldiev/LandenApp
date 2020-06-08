@@ -31,8 +31,6 @@ public class LandenLijstActivity extends AppCompatActivity {
     private ArrayAdapter landenArrayAdapter;
     private DatabaseHelper databaseHelper;
 
-    public Regio geselecteerdeRegio;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +58,7 @@ public class LandenLijstActivity extends AppCompatActivity {
         landenLijstListView.setAdapter(landenArrayAdapter);
 
         setSupportActionBar(landenLijstToolbar);
-        getSupportActionBar().setTitle(null);
+        getSupportActionBar().setTitle("Landen Lijst");
 
         landenLijstListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -83,10 +81,17 @@ public class LandenLijstActivity extends AppCompatActivity {
         MenuItem filterItem = menu.findItem(R.id.action_filter);
         MenuItem helpItem = menu.findItem(R.id.action_help);
         MenuItem mapItem = menu.findItem(R.id.action_map);
+        MenuItem backItem = menu.findItem(R.id.action_back);
         SearchView searchView = (SearchView) searchItem.getActionView();
 
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);// set drawable icon
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        backItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Intent i = new Intent(LandenLijstActivity.this, MainActivity.class);
+                startActivity(i);
+                return false;
+            }
+        });
 
         filterItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override

@@ -21,7 +21,8 @@
                 android:layout_margin="10dp"
                 android:id="@+id/backbutton_regios_info_activiteit"
                 android:src="@drawable/ic_arrow_back_black_24dp"
-                android:layout_alignParentLeft="true"/>
+                android:layout_alignParentLeft="true"
+                android:background="@color/White"/>
 
             <ImageButton
                 android:layout_width="wrap_content"
